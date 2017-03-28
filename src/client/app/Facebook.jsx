@@ -6,12 +6,13 @@ class Facebook extends React.Component {
   constructor(props) {
     super(props)
   }
+
   componentDidMount() {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : window.location.host === 'localhost:8080' ? '1286128124802062' : window.location.host === 'you-in.herokuapp.com' ? '1724251701198619' :'414888392204388',
+        appId      : process.env.CLIENT_ID,
         cookie     : true,  // enable cookies to allow the server to access
-                          // the session
+                            // the session
         xfbml      : true,
         version    : 'v2.1'
       });
@@ -19,8 +20,8 @@ class Facebook extends React.Component {
         this.statusChangeCallback(response);
       }.bind(this));
     }.bind(this);
-
   }
+
   testAPI() {
     var check = this;
     console.log('Welcome!  Fetching your information.... ');

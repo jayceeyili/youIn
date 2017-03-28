@@ -1,3 +1,4 @@
+var dotenv = require('dotenv').config();
 var webpack = require('webpack');
 var path = require('path');
 
@@ -18,7 +19,12 @@ var config = {
         loader : 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.EnvironmentPlugin([
+      'CLIENT_ID'
+    ])
+  ]
 };
 
 module.exports = config;

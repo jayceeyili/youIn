@@ -29,16 +29,16 @@ class Homepage extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      intervalId: setInterval(this.pollEvents.bind(this), 1000)
-    });
+    // this.setState({
+    //   intervalId: setInterval(this.pollEvents.bind(this), 1000)
+    // });
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.intervalId);
-    this.setState({
-      intervalId: null
-    });
+    // clearInterval(this.state.intervalId);
+    // this.setState({
+    //   intervalId: null
+    // });
   }
 
   render() {
