@@ -65,7 +65,9 @@ class App extends React.Component {
       url: '/events',
       method: 'GET',
       contentType: 'application/json',
-      success: callback.bind(this),
+      success: function() {
+        callback.bind(this)
+      },
       error: function(err) {
         console.log(err);
         if (err.status >= 400) {

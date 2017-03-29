@@ -22,7 +22,7 @@ class FriendEventListItem extends React.Component {
   //Insert Methods Here
   handleClickListItem() {
     this.setState({clicked: !this.state.clicked});
-    console.log(this.state.clicked);
+    // console.log(this.state.clicked);
     if (this.state.clicked) {
       this.props.getEvents(this.props.history, function(result) {
         this.setState({
