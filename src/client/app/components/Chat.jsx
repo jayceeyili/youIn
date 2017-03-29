@@ -1,9 +1,10 @@
 import React from 'react';
+import $ from 'jquery';
 import {render} from 'react-dom';
 import Sidebar from './Sidebar.jsx';
 import EventShow from './EventShow.jsx';
+import MessageInputBox from './MessageInputBox.jsx';
 import data from './../../../../server/data.js';
-import $ from 'jquery';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -30,12 +31,13 @@ export default class Chat extends React.Component {
     return (
       <div>
         <Sidebar myEvents={ this.state.myEvents }
-                 friendEvents={ this.state.friendEvents }
-                 handleSidebarEventClick={ this.handleSidebarEventClick }/>
-        <EventShow users={ this.state.users } event={ this.state.currentEvent }/>
+          friendEvents={ this.state.friendEvents }
+          handleSidebarEventClick={ this.handleSidebarEventClick }/>
+        <EventShow 
+          users={ this.state.users } 
+          event={ this.state.currentEvent }/>
+        <MessageInputBox />
       </div>
     );
   }
 }
-// render(<Chat/>, document.getElementById('app'));
-        // <Chatbox />

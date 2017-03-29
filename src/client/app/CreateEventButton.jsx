@@ -4,7 +4,6 @@ import FriendsListItem from './FriendsListItem.jsx';
 import Modal from 'boron/DropModal';
 import $ from 'jquery';
 
-//trying to force a webpack build
 class CreateEventButton extends React.Component {
   constructor(props) {
     super(props);
