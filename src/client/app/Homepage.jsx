@@ -49,7 +49,7 @@ class Homepage extends React.Component {
         <div className="container">
         <Link to="/chat">Chat</Link>
           <div className="page-header">
-           <h2 id='userName'>Welcome <span id="headerName">{this.props.userName}</span></h2>
+           <h2 id='userName'>uhjuhhu <span id="headerName">{this.props.userName}</span></h2>
             <LogoutButton />
           </div>
           <CreateEventButton
