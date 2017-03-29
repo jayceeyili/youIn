@@ -61,8 +61,9 @@ export default class Chat extends React.Component {
       <Sidebar myEvents={ this.state.myEvents } 
                friendEvents={ this.state.friendEvents } 
                handleSidebarEventClick={ this.handleSidebarEventClick }/>
+      // we need the CreateEventButton here
+      <EventShow /> //TODO: add pass down state
     )
   }
 }
-
 // render(<Chat/>, document.getElementById('app'));

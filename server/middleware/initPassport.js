@@ -6,6 +6,7 @@ passport.use(new FacebookTokenStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
   }, function(accessToken, refreshToken, profile, done) {
+    console.log(accessToken);
     let id = +profile.id;
     db.query('SELECT * FROM users WHERE user_id = $1', [id])
       .then((user) => {
@@ -25,6 +26,7 @@ passport.use(new FacebookTokenStrategy({
             .then( (result) => {
               db.query('SELECT * FROM users WHERE user_id = $1', [user.user_id])
                 .then( (user) => {
+                  console.log(user);
                    done(null, user[0][0]);
                 })
             })
