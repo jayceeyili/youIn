@@ -33,8 +33,8 @@ export default class Chat extends React.Component {
         <Sidebar myEvents={ this.state.myEvents }
           friendEvents={ this.state.friendEvents }
           handleSidebarEventClick={ this.handleSidebarEventClick }/>
-        <EventShow 
-          users={ this.state.users } 
+        <EventShow
+          users={ this.state.users }
           event={ this.state.currentEvent }/>
         <MessageInputBox />
       </div>
