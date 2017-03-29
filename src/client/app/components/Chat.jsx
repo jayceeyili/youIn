@@ -13,16 +13,10 @@ export default class Chat extends React.Component {
       users: data.users,
       myEvents: data.myEvents,
       friendEvents: data.friendEvents,
-      currentEvent: null
+      currentEvent: data.myEvents[0]
     }
 
     this.handleSidebarEventClick = this.handleSidebarEventClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      currentEvent: this.state.myEvents[0]
-    })
   }
 
   handleSidebarEventClick(event) {

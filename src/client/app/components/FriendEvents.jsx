@@ -9,7 +9,7 @@ const FriendEvents = (props) => (
           props.friendEvents.map(event => (
             <Event
               event={ event } 
-              handleSidebarEventClick={ props.handleSidebarEventClick }/>
+              handleSidebarEventClick={ props.handleSidebarEventClick } />
           ))
         }
       </ul>
