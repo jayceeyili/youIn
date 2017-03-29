@@ -16,6 +16,8 @@ class Chat extends React.Component {
   render() {
     return (
       <Sidebar myEvents={ this.state.myEvents } friendEvents={ this.state.friendEvents } />
+      // we need the CreateEventButton here
+      <EventShow /> //TODO: add pass down state
     )
   }
 }

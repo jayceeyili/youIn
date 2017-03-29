@@ -7,7 +7,7 @@ const AttendingList = props => {
     <div>
       {
         props.friendsArr.map( ( friend ) => (
-          <FriendPic pic=friend.pic />
+          <FriendPic pic=friend.picUrl />
         ))
       }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Event = props => {
+const EventShow = props => {
   // functions here
 
   return (
@@ -11,4 +11,4 @@ const Event = props => {
   );
 };
 
-export default Event;
+export default EventShow;

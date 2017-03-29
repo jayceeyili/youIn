@@ -5,7 +5,7 @@ const FriendPic = props => {
 
   return (
     <span>
-      { props }
+      <img className="friendPic" src={ props }></img>
     </span>
   );
 };
