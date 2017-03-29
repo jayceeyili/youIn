@@ -20,6 +20,7 @@ export default class Chat extends React.Component {
   }
 
   handleSidebarEventClick(event) {
+    console.log(event);
     this.setState({
       currentEvent: event
     })
@@ -37,3 +38,4 @@ export default class Chat extends React.Component {
   }
 }
 // render(<Chat/>, document.getElementById('app'));
+        // <Chatbox />

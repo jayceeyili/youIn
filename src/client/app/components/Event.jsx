@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Event = (props) => (
-  <li>
+  <li onClick={ () => props.handleSidebarEventClick(props.event) }>
     { props.event.title }
   </li>
 );
