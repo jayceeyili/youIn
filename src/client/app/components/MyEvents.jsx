@@ -6,11 +6,11 @@ const MyEvents = (props) => (
     <h1>My Events</h1>
       <ul>
         {
-          props.myEvents.map((event) => (
+          props.myEvents.map(event => (
             <Event 
               event={ event }
               handleSidebarEventClick={ props.handleSidebarEventClick } /> 
-        ))
+          ))
         }
       </ul>
   </div>
