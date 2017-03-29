@@ -5,9 +5,12 @@ const FriendPic = props => {
 
   return (
     <span>
-      <img className="friendPic" src={ props }></img>
+      <h2>friend pics</h2>
     </span>
   );
 };
 
 export default FriendPic;
+
+// // <img className="friendPic" src={ props }></img>
+// { props }
