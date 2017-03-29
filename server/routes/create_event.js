@@ -21,7 +21,7 @@ module.exports = function(req, res) {
     res.status(201).json(result);
   })
   .catch( (err) => {
-    res.status(404).send(err, "Invalid user_id, please login");
+    res.status(404).send(err + "Invalid user_id, please login");
   });
 };
 
