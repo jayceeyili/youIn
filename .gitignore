@@ -1,3 +1,17 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+**/.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# local config file
+.env
+
 # Logs
 logs
 *.log
@@ -39,6 +53,3 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-
-# local config file
-.env

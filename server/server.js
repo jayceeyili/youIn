@@ -1,4 +1,5 @@
 'use strict';
+const dotenv = require('dotenv').config();
 
 let express = require('express');
 let bodyParser = require('body-parser');
@@ -7,6 +8,8 @@ let session = require('express-session');
 let passport = require('./middleware/initPassport');
 let path = require('path');
 let handler = require('./routes/request_handler');
+
+// const importdata = require('./fakeData.js');
 
 let port = process.env.PORT || 8080;
 let app = express();
