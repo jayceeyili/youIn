@@ -9,7 +9,7 @@ let passport = require('./middleware/initPassport');
 let path = require('path');
 let handler = require('./routes/request_handler');
 
-// const importdata = require('./fakeData.js');
+const importdata = require('./fakeData.js');
 
 let port = process.env.PORT || 8080;
 let app = express();
