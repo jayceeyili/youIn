@@ -30,8 +30,7 @@ export default class Chat extends React.Component {
   render() {
     return (
       <div>
-        <Sidebar 
-          myEvents={ this.state.myEvents }
+        <Sidebar myEvents={ this.state.myEvents }
           friendEvents={ this.state.friendEvents }
           handleSidebarEventClick={ this.handleSidebarEventClick }/>
         <EventShow 
