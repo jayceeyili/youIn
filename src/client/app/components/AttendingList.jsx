@@ -1,4 +1,5 @@
 import React from 'react';
+import FriendPic from './FriendPic.jsx';
 
 const AttendingList = props => {
   // functions
@@ -6,8 +7,8 @@ const AttendingList = props => {
   return (
     <div>
       {
-        props.friendsArr.map( ( friend ) => (
-          <FriendPic pic=friend.picUrl />
+        props.users.map( ( friend ) => (
+          <FriendPic pic={ friend.photoUrl }/>
         ))
       }
 

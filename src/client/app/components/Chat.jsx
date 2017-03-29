@@ -1,6 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
 import Sidebar from './Sidebar.jsx';
+import EventShow from './EventShow.jsx';
+import data from './../../../../server/data.js';
 import $ from 'jquery';
 
 export default class Chat extends React.Component {
@@ -8,6 +10,8 @@ export default class Chat extends React.Component {
     super(props);
 
     this.state = {
+      users: data.users,
+
       myEvents: [{
         event_id: 1,
         owner: 1,
@@ -44,6 +48,7 @@ export default class Chat extends React.Component {
         attendees: 6,
         min: 5
       }],
+
       // currentEvent: this.state.myEvents[0]
     }
 
@@ -58,12 +63,13 @@ export default class Chat extends React.Component {
 
   render() {
     return (
-      <Sidebar myEvents={ this.state.myEvents } 
-               friendEvents={ this.state.friendEvents } 
-               handleSidebarEventClick={ this.handleSidebarEventClick }/>
-      // we need the CreateEventButton here
-      <EventShow /> //TODO: add pass down state
-    )
+      <div>
+        <Sidebar myEvents={ this.state.myEvents }
+                 friendEvents={ this.state.friendEvents }
+                 handleSidebarEventClick={ this.handleSidebarEventClick }/>
+        <EventShow users={ this.state.users } event={ this.state.currentEvent }/>
+      </div>
+    );
   }
 }
 // render(<Chat/>, document.getElementById('app'));
