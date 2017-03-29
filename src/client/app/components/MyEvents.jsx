@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import Event from './Event.jsx';
 
 const MyEvents = (props) => (
@@ -9,7 +8,8 @@ const MyEvents = (props) => (
         {
           props.myEvents.map((event) => (
             <Event 
-              event={event} /> 
+              event={ event }
+              handleSidebarEventClick={ props.handleSidebarEventClick } /> 
         ))
         }
       </ul>

@@ -2,10 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import Sidebar from './Sidebar.jsx';
 import EventShow from './EventShow.jsx';
-<<<<<<< HEAD
 import data from './../../../../server/data.js';
-=======
->>>>>>> Fix sidebar
 import $ from 'jquery';
 
 export default class Chat extends React.Component {
@@ -27,7 +24,7 @@ export default class Chat extends React.Component {
       currentEvent: this.state.myEvents[0]
     })
   }
-  
+
   handleSidebarEventClick(event) {
     this.setState({
       currentEvent: event
