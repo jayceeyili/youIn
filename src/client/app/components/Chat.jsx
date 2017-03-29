@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import Sidebar from ''
+import Sidebar from './Sidebar.jsx';
 import $ from 'jquery';
 
 class Chat extends React.Component {
