@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import OwnerEventList from './OwnerEventList.jsx';
 import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
@@ -46,6 +47,7 @@ class Homepage extends React.Component {
     return (
       <div>
         <div className="container">
+        <Link to="/chat">Chat</Link>
           <div className="page-header">
            <h2 id='userName'>Welcome <span id="headerName">{this.props.userName}</span></h2>
             <LogoutButton />

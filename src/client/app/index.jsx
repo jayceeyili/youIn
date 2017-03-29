@@ -8,6 +8,7 @@ import {users as friends} from '../../../server/data.js';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Facebook from './Facebook.jsx';
 import $ from 'jquery';
+import Chat from './components/Chat.jsx';
 
 
 
@@ -95,6 +96,7 @@ class App extends React.Component {
             history={props.history}
             getEvents={this.getEvents.bind(this)}/>)
         }} />
+        <Route path='/chat' component={Chat} />
       </div>
       </Router>
     )

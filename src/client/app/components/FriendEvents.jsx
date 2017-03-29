@@ -2,15 +2,18 @@ import React from 'react';
 import {render} from 'react-dom';
 import Event from './Event.jsx';
 
-const FriendEvents = (props) = (
+const FriendEvents = (props) => (
   <div>
-    <h1>Friend's Events</h1>
+    <h1>Friend Events</h1>
       <ul>
-        {this.props.friendEvents.maps((event) => {
-          <Event event={event} /> 
-        })}
+        {
+          props.friendEvents.map(event => (
+            <Event
+              event={event} />
+          ))
+        }
       </ul>
   </div>
 );
 
-export defaults FriendEvents;
+export default FriendEvents;
