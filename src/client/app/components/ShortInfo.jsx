@@ -5,9 +5,9 @@ const ShortInfo = props => {
 
   return (
     <div>
-      <span>{ props.event.title }</span>
-      <span>{ props.event.location }</span>
-      <span>{ props.event.time }</span>
+      <span>{ props.event.title } | </span>
+      <span>{ props.event.location } | </span>
+      <span>{ props.event.time } | </span>
     </div>
   );
 };

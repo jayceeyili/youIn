@@ -5,7 +5,7 @@ const FriendPic = props => {
 
   return (
     <span>
-      { props.pic }
+      { props.pic } | 
     </span>
   );
 };
