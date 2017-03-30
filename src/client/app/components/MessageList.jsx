@@ -4,8 +4,11 @@ import MessageListEntry from './MessageListEntry.jsx';
 const MessageList = props => (
   <div className="ui comments">
     {
-      props.messages.map( message => (
-        <MessageListEntry message={ message } />
+      props.messages.map( ( message, index ) => (
+        <MessageListEntry
+          key={ index }
+          message={ message }
+        />
       ))
     }
   </div>

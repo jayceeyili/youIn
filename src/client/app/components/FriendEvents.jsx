@@ -6,9 +6,10 @@ const FriendEvents = (props) => (
     <h1>Friend Events</h1>
       <ul>
         {
-          props.friendEvents.map(event => (
+          props.friendEvents.map( ( event, index ) => (
             <Event
-              event={ event } 
+              key={ index }
+              event={ event }
               handleSidebarEventClick={ props.handleSidebarEventClick } />
           ))
         }
