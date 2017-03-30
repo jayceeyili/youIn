@@ -1,12 +1,13 @@
 import React from 'react';
 import ShortInfo from './ShortInfo.jsx';
 import AttendingList from './AttendingList.jsx';
+import MessageInputBox from './MessageInputBox.jsx';
 
 const EventShow = props => {
   // functions here
 
   return (
-    <div className='eventInfo-container'>
+    <div className='event-show'>
       <ShortInfo event={ props.event }/>
       <AttendingList
         friends={ props.friends }
@@ -14,6 +15,7 @@ const EventShow = props => {
         handleDeclineEvent={ props.handleDeclineEvent }
         handleAcceptEvent={ props.handleAcceptEvent }
       />
+      <MessageInputBox />
     </div>
   );
 };
