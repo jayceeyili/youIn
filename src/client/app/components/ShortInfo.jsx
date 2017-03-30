@@ -19,10 +19,10 @@ export default class ShortInfo extends React.Component {
 
   render() {
     return (
-      <div onClick={ this.handleEventInfoClick }>
-        <span>{ this.props.event.title } | </span>
-        <span>{ this.props.event.location } | </span>
-        <span>{ this.props.event.time } | </span>
+      <div className="ui segment" onClick={ this.handleEventInfoClick }>
+        <h1>{ this.props.event.title }</h1>
+        <h2>{ this.props.event.location }</h2>
+        <h2>{ this.props.event.time }</h2>
         { this.state.showDescription ? <div>{ this.props.event.description }</div> : null }
       </div>
     );
