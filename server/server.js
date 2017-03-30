@@ -30,13 +30,17 @@ app.use(passport.session());
 
 app.use('/', express.static(path.join(__dirname, '../src/client')));
 
-app.get('/events', passport.authenticate('facebook-token'), handler.getEvents);
-
 app.get('/users', handler.getUsers);
+
+app.get('/events', passport.authenticate('facebook-token'), handler.getEvents);
 
 app.post('/events/users', passport.authenticate('facebook-token'), handler.addUsersEvents);
 
 app.post('/events/create', passport.authenticate('facebook-token'), handler.createEvent);
+
+app.get('/messages', passport.authenticate('facebook-token'), function(res, req) {
+  
+});
 
 app.post('/accept', passport.authenticate('facebook-token'), handler.acceptEvent);
 
