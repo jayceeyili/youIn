@@ -11,11 +11,9 @@ class CreateEventButton extends React.Component {
       clicked: {},
       friends:[],
       title: '',
-      what: 'food-drinks',
       where: '',
       date: '',
       time: '',
-      min: '',
       invitees: {},
       description: ''
     }
@@ -122,12 +120,10 @@ class CreateEventButton extends React.Component {
     let eventData = {
       owner: '1',//this is hardcoded - we need to have the owner come from who is logged in.
       title: this.state.title,
-      short_desc: this.state.what,
       description: this.state.description,
       location: this.state.where,
       date: this.state.date,
       time: this.state.time,
-      min: this.state.min
     }
   $.ajax({
     url: '/events/create',
@@ -157,28 +153,19 @@ class CreateEventButton extends React.Component {
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="row">
                 <div className="col-md-8">
-                  <h4 className='create'>Give your event a title</h4>
+                  <h4 className='create'>Event Name</h4>
                   <input 
                     value={this.state.title} 
                     type="text"
                     onChange={this.handleChange.bind(this, 'title')} required
                     />
-
-                  <h4 className='create'>Pick an event category</h4>
-                  <select value={this.state.what} onChange={this.handleChange.bind(this, 'what')} required>
-                    <option value="food-drinks" >Food/Drinks</option>
-                    <option value="indoor-activity">Indoor Activity</option>
-                    <option value="outdoor-activity">Outdoor Activity</option>
-                    <option value="hangout">Hangout</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <h4 className='create'>Where?</h4>
+                  <h4 className='create'>Where</h4>
                   <input 
                     value={this.state.where}
                     onChange={this.handleChange.bind(this, 'where')}
                     type="text" required
                     />
-                  <h4 className='create'>When?</h4>
+                  <h4 className='create'>When</h4>
                   <input 
                     value={this.state.date}
                     onChange={this.handleChange.bind(this, 'date')}
@@ -189,33 +176,14 @@ class CreateEventButton extends React.Component {
                     onChange={this.handleChange.bind(this, 'time')}
                     type="time" required
                     /> 
-                  <h4 className='create'>Minimum friends for this event?</h4>
-                  <input 
-                    value={this.state.min}
-                    onChange={this.handleChange.bind(this, 'min')}
-                    type="number" required
-                    />
                 </div>
 
-                <div className="col-md-4">
-                  <h4 className='create'>Invite Friends</h4>
-                  {
-                    this.props.friends.map( (friend, i) => (
-                      <FriendsListItem
-                        key={i}
-                        friend={friend}
-                        inviteFriend={this.inviteFriend(friend)}
-                        />
-                      )
-                    )
-                  }
-                </div>
 
               </div>
 
 
               <div className="col-md-12">
-                <h4 className='create'>Description: </h4>
+                <h4 className='create'>Description </h4>
               </div>
 
 
@@ -226,9 +194,22 @@ class CreateEventButton extends React.Component {
                 type="text" required/>
               </div>
 
+              <div className="col-md-4">
+                <h4 className='create'>Invite Friends</h4>
+                {
+                  // this.props.friends.map( (friend, i) => (
+                  //   <FriendsListItem
+                  //     key={i}
+                  //     friend={friend}
+                  //     inviteFriend={this.inviteFriend(friend)}
+                  //     />
+                  //   )
+                  // )
+                }
+              </div>
 
               <div className="col-md-12">
-                <button type="submit">See Who's In!</button>
+                <button type="submit">Submit</button>
               </div>
 
             </form>
@@ -240,9 +221,3 @@ class CreateEventButton extends React.Component {
 }
 
 export default CreateEventButton;
-
-//click the name and the style changes
-//an array (in state?) that holds all of the people taken from the DB
-//Display those people's names via the friendsListItem component.
-//click the name and add the person to an array of people (with access to all of their information)
-//deselect them and take them out of the array that holds their information.
