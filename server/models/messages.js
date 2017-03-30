@@ -5,7 +5,11 @@ module.exports = {
   getAll: function () {
     return db.query('select * from messages');
   },
-
+  getUserEvents: function (userid) {
+    return db.query('select event_id from users_events\
+     where user_id = $1 or current_status=\'accepted\' or\
+      current_status=\'pending\'', [userid]);
+  },
   write: function (message) {
     /*
       message objects received in the form of

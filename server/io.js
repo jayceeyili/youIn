@@ -13,10 +13,29 @@ module.exports = {
 		io.on('connection', function(socket) {
 			console.log('connected to sockets');
 
+			socket.on('chat-join', function(data) {
+				/* assumes object 
+					{
+						user_id: int
+					}		
+				*/
+				Message.getUserEvents(data.user_id)
+				.then(function(result) {
+					// assumes result is an array of event ids
+					var rooms = data.events
+					socket.join(rooms);
+					socket.join('new-room');
+				});
+			});
+
+			socket.on('new-event', function(data) {
+
+			});
+
 			socket.on('send-message', function(data) {
 				console.log('Sockets: received message ', data);
-			  var room = data.event_id
-			  socket.join(`${room}`, function() {
+			  var room = data.event_id;
+			  // socket.join(`${room}`, function() {
 			    // new message object retrieved from db.
 			    Message.write(data)
 			    	.then(function (result) {
@@ -27,7 +46,7 @@ module.exports = {
 				    .catch((err) => {
 				      console.error(err, 'an error in db retrieval');
 				    });
-			  });
+			  // });
 			});
 
 			socket.on('disconnect', function() {
