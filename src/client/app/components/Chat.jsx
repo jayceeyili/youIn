@@ -11,13 +11,32 @@ export default class Chat extends React.Component {
     super(props);
 
     this.state = {
-      users: data.users,
+      friends: data.users,
       myEvents: data.myEvents,
       friendEvents: data.friendEvents,
-      currentEvent: data.myEvents[0]
+      currentEvent: data.myEvents[0],
+      currentUser: null,
+      isGoing: false
     }
 
     this.handleSidebarEventClick = this.handleSidebarEventClick.bind(this);
+    this.handleDeclineClick = this.handleDeclineClick.bind(this);
+    this.handleAccecptClick = this.handleAccecptClick.bind(this);
+  }
+
+  handleDeclineClick() {
+    console.log('Declined!');
+    this.setState({
+      isGoing: false,
+    })
+  }
+
+  handleAccecptClick() {
+    console.log('Accepted!');
+    this.setState({
+      isGoing: true,
+      // friends: friends.push(currentUser);
+    })
   }
 
   handleSidebarEventClick(event) {
@@ -34,8 +53,12 @@ export default class Chat extends React.Component {
           friendEvents={ this.state.friendEvents }
           handleSidebarEventClick={ this.handleSidebarEventClick }/>
         <EventShow
-          users={ this.state.users }
-          event={ this.state.currentEvent }/>
+          friends={ this.state.friends }
+          event={ this.state.currentEvent }
+          isGoing={ this.state.isGoing }
+          handleDeclineClick={ this.handleDeclineClick }
+          handleAccecptClick={ this.handleAccecptClick }
+        />
         <MessageInputBox />
       </div>
     );

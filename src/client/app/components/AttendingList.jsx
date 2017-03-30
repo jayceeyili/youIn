@@ -1,5 +1,5 @@
 import React from 'react';
-import FriendPic from './FriendPic.jsx';
+import Avatar from './Avatar.jsx';
 
 const AttendingList = props => {
   // functions
@@ -7,13 +7,17 @@ const AttendingList = props => {
   return (
     <div>
       {
-        props.users.map( ( friend ) => (
-          <FriendPic pic={ friend.photoUrl }/>
+        props.friends.map( ( friend ) => (
+          <Avatar pic={ friend.photoUrl }/>
         ))
       }
 
-      <button>Decline</button>
-      <button>Accept</button>
+      <button onClick={ () => props.handleDeclineClick() }>
+        Decline
+      </button>
+      <button onClick={ () => props.handleAccecptClick() }>
+        { props.isGoing ? 'Going' : 'Accept' }
+      </button>
     </div>
   );
 };
