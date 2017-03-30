@@ -54,14 +54,12 @@ export default class Chat extends React.Component {
   }
 
   handleDeclineEvent() {
-    console.log('Declined!');
     this.setState({
       isGoing: false,
     })
   }
 
   handleAcceptEvent() {
-    console.log('Accepted!');
     this.setState({
       isGoing: true,
       // friends: friends.push(currentUser);
@@ -69,7 +67,6 @@ export default class Chat extends React.Component {
   }
 
   handleSidebarEventClick(event) {
-    console.log(event);
     this.setState({
       currentEvent: event
     })
