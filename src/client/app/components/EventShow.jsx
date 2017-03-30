@@ -11,8 +11,8 @@ const EventShow = props => {
       <AttendingList
         friends={ props.friends }
         isGoing={ props.isGoing }
-        handleDeclineClick={ props.handleDeclineClick }
-        handleAccecptClick={ props.handleAccecptClick }
+        handleDeclineEvent={ props.handleDeclineEvent }
+        handleAcceptEvent={ props.handleAcceptEvent }
       />
     </div>
   );

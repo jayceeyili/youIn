@@ -11,13 +11,26 @@ const AttendingList = props => {
           <Avatar pic={ friend.photoUrl }/>
         ))
       }
-
-      <button onClick={ () => props.handleDeclineClick() }>
-        Decline
-      </button>
-      <button onClick={ () => props.handleAccecptClick() }>
-        { props.isGoing ? 'Going' : 'Accept' }
-      </button>
+      {
+        props.isGoing &&
+        <div>
+          <button onClick={ props.handleDeclineEvent }>
+            Quit
+          </button>
+          <div>Is going</div>
+        </div>
+      }
+      {
+        !props.isGoing &&
+        <div>
+          <button onClick={ props.handleDeclineEvent }>
+            Decline
+          </button>
+          <button onClick={ props.handleAcceptEvent }>
+            Accept
+          </button>
+        </div>
+      }
     </div>
   );
 };
