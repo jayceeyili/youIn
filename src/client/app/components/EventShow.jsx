@@ -8,7 +8,12 @@ const EventShow = props => {
   return (
     <div className='eventInfo-container'>
       <ShortInfo event={ props.event }/>
-      <AttendingList users={ props.users }/>
+      <AttendingList
+        friends={ props.friends }
+        isGoing={ props.isGoing }
+        handleDeclineEvent={ props.handleDeclineEvent }
+        handleAcceptEvent={ props.handleAcceptEvent }
+      />
     </div>
   );
 };
