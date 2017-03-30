@@ -8,11 +8,13 @@ let session = require('express-session');
 let passport = require('./middleware/initPassport');
 let path = require('path');
 let handler = require('./routes/request_handler');
+let message = require('./models/messages');
 
 // const importdata = require('./fakeData.js');
 
 let port = process.env.PORT || 8080;
 let app = express();
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -60,6 +62,48 @@ app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
 app.get('*', handler.wildCard);
 
 
-app.listen(port, function() {
+var server = app.listen(port, function() {
   console.log('we are now listening on: ' + port);
 });
+
+// SERVER SOCKET STUFF     
+// *************************
+const io = require('socket.io')(server);
+
+/*
+  message objects received in the form of
+  {
+    user_id: int
+    event_id: int
+    text: string
+    created: object/timestamp
+    token: string
+  }
+*/
+io.on('connection', function (socket) {
+  console.log('connected to socket');
+  socket.on('disconnect', () => console.log('Client disconnected'));
+
+  //needs authentication 
+
+  //client sents a send-message event when they hit enter with a message
+  socket.on('send-message', function (data) {
+    console.log('received message');
+    
+    var dbResult = message.write(data);
+    var room = data.event_id
+    socket.join(`${room}`, function() {
+      // new message object retrieved from db.
+      dbResult.then(function (result) {
+      // sends a response of new-message event to all people in the event room.
+        io.to(`${room}`, 'a new message')
+        .emit('new-message', result);
+      })
+      .catch((err) => {
+        console.error(err, 'an error in db retrieval');
+      });
+    });
+  });
+
+});
+
