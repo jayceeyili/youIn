@@ -174,7 +174,7 @@ class CreateEventButton extends React.Component {
                   <input
                     value={this.state.time}
                     onChange={this.handleChange.bind(this, 'time')}
-                    type="time" required
+                    type="time" value="12:00:00" required
                     /> 
                 </div>
 
@@ -197,14 +197,14 @@ class CreateEventButton extends React.Component {
               <div className="col-md-4">
                 <h4 className='create'>Invite Friends</h4>
                 {
-                  // this.props.friends.map( (friend, i) => (
-                  //   <FriendsListItem
-                  //     key={i}
-                  //     friend={friend}
-                  //     inviteFriend={this.inviteFriend(friend)}
-                  //     />
-                  //   )
-                  // )
+                  this.props.friends.map( (friend, i) => (
+                    <FriendsListItem
+                      key={i}
+                      friend={friend}
+                      inviteFriend={this.inviteFriend(friend)}
+                      />
+                    )
+                  )
                 }
               </div>
 

@@ -5,12 +5,12 @@ import MessageInputBox from './MessageInputBox.jsx';
 import Chatbox from './Chatbox.jsx';
 import CreateEventButton from '../CreateEventButton.jsx';
 
-const EventShow = props => {
+const EventShow = (props) => {
   // functions here
 
   return (
     <div className='event-show'>
-      <CreateEventButton />
+      <CreateEventButton friends={props.friends}/>
       <ShortInfo event={ props.event }/>
       <AttendingList
         friends={ props.friends }
