@@ -10,9 +10,6 @@ import Facebook from './Facebook.jsx';
 import $ from 'jquery';
 import Chat from './components/Chat.jsx';
 
-
-
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -29,7 +26,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let context = this;
-
+    
     context.getUsers();
   }
   setToken(token) {
