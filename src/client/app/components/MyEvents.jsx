@@ -6,14 +6,15 @@ const MyEvents = (props) => (
     <h1>My Events</h1>
       <ul>
         {
-          props.myEvents.map(event => (
-            <Event 
+          props.myEvents.map( ( event, index ) => (
+            <Event
+              key={ index }
               event={ event }
-              handleSidebarEventClick={ props.handleSidebarEventClick } /> 
+              handleSidebarEventClick={ props.handleSidebarEventClick } />
           ))
         }
       </ul>
   </div>
 );
 
-export default MyEvents; 
+export default MyEvents;

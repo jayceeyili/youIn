@@ -7,8 +7,11 @@ const AttendingList = props => {
   return (
     <div className="ui segment">
       {
-        props.friends.map( ( friend ) => (
-          <Avatar pic={ friend.photoUrl }/>
+        props.friends.map( ( friend, index ) => (
+          <Avatar
+            key={ index }
+            pic={ friend.photoUrl }
+          />
         ))
       }
       {
