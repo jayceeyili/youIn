@@ -5,7 +5,9 @@ import MessageList from './MessageList.jsx';
 const Chatbox = (props) => (
   <div>
     <MessageList messages={ props.messages } />
-    <MessageInputBox />
+    <MessageInputBox
+      renderNewMessage={ props.renderNewMessage }
+    />
   </div>
 );
 
