@@ -15,7 +15,7 @@ const EventShow = props => {
         handleDeclineEvent={ props.handleDeclineEvent }
         handleAcceptEvent={ props.handleAcceptEvent }
       />
-      <MessageInputBox />
+      <Chatbox />
     </div>
   );
 };
