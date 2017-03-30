@@ -38,5 +38,13 @@ module.exports = (db) => {
       return db.query('CREATE TABLE IF NOT EXISTS friends (\
         user1 BIGINT not null,\
         user2 BIGINT not null);')
+    })
+    .then(() => {
+      return db.query('CREATE TABLE IF NOT EXISTS messages (\
+        message_id serial,\
+        user_id  int not null,\
+        event_id int not null,\
+        text text not null);')
     });
 };
+        // created timestamp not null,\
