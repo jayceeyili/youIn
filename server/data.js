@@ -189,8 +189,40 @@ let friendEvents = [
   }
 ];
 
+let messages = [
+  {
+    message_id: 1,
+    user_id: 1,
+    event_id: 1,
+    text: 'this is a sample message',
+    created: new Date()
+  },
+  {
+    message_id: 2,
+    user_id: 2,
+    event_id: 1,
+    text: 'another message, lazy brown fox',
+    created: new Date()
+  },
+  {
+    message_id: 3,
+    user_id: 3,
+    event_id: 1,
+    text: 'haha this is a javascript message',
+    created: new Date()
+  },
+  {
+    message_id: 4,
+    user_id: 4,
+    event_id: 1,
+    text: 'super indlsion43fdsa fdsf',
+    created: new Date()
+  }
+]
+
 module.exports.myEvents = myEvents;
 module.exports.friendEvents = friendEvents;
 module.exports.users = users;
 module.exports.events = events;
 module.exports.usersEvents = usersEvents;
+module.exports.messages = messages;

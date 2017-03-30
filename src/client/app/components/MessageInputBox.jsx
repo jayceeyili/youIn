@@ -1,5 +1,6 @@
 import React from 'react';
 import io from 'socket.io-client';
+import $ from 'jquery';
 
 export default class MessageInputBox extends React.Component {
 	constructor(props) {
@@ -23,14 +24,24 @@ export default class MessageInputBox extends React.Component {
 
 	sendMessage() {
 		let message = {
-			event_id: this.props.eventId,
-			user_id: this.props.userId,
+			event_id: this.props.eventId || 2,
+			user_id: this.props.userId || 2,
 			text: this.state.text,
-			created: new Date()
+			created: new Date().toISOString()
 		}
-		console.log(message);
 		// let socket = this.state.socket;
 		// socket.emit('send-message', message);
+		$.ajax({
+			url: '/messages',
+			method: 'POST',
+			data: message,
+			success: function(results) {
+				console.log(results);
+			},
+			error: function(err) {
+				console.log('Error: ', err);
+			}
+		});
 	}
 
 	updateText(event) {

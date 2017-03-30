@@ -8,8 +8,9 @@ let session = require('express-session');
 let passport = require('./middleware/initPassport');
 let path = require('path');
 let handler = require('./routes/request_handler');
-let message = require('./models/messages');
+let Message = require('./models/messages');
 
+// const db = require('./config.js');
 // const importdata = require('./fakeData.js');
 
 let port = process.env.PORT || 8080;
@@ -38,9 +39,22 @@ app.post('/events/users', passport.authenticate('facebook-token'), handler.addUs
 
 app.post('/events/create', passport.authenticate('facebook-token'), handler.createEvent);
 
-app.get('/messages', passport.authenticate('facebook-token'), function(res, req) {
-  
+app.get('/messages', function(req, res) {
+  Message.getAll()
+    .then(function(messages) {
+      console.log(messages);
+      res.status(200).send(messages);
+    })
 });
+
+app.post('/messages', function(req, res) {
+  console.log(req.body);
+  Message.write(req.body)
+    .then(function(result) {
+      console.log('Add: ', result);
+      res.status(200).send(result);
+    })
+})
 
 app.post('/accept', passport.authenticate('facebook-token'), handler.acceptEvent);
 
