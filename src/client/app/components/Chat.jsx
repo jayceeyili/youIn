@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import Sidebar from './Sidebar.jsx';
 import EventShow from './EventShow.jsx';
 import Chatbox from './Chatbox.jsx';
+import MessageInputBox from './MessageInputBox.jsx';
 import data from './../../../../server/data.js';
 
 export default class Chat extends React.Component {
@@ -67,5 +68,3 @@ export default class Chat extends React.Component {
     );
   }
 }
-
-// render(<Chat/>, document.getElementById('app'));
