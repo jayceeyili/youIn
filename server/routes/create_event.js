@@ -1,12 +1,11 @@
 'use strict';
-
 let db = require('../config');
+let io = require('../io').io();
 
 module.exports = function(req, res) {
   // create a random user as sub for
   // req.session.user.user_id
   
-
   let event = req.body;
   event.owner = req.user.user_id;
   //event.attendees = 10;
