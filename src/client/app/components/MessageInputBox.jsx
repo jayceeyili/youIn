@@ -38,6 +38,7 @@ export default class MessageInputBox extends React.Component {
 
 		let socket = this.state.socket;
 		socket.emit('send-message', message);
+    this.props.renderNewMessage(message);
 		// $.ajax({
 		// 	url: '/messages',
 		// 	method: 'POST',

@@ -24,11 +24,18 @@ export default class Chat extends React.Component {
     this.handleSidebarEventClick = this.handleSidebarEventClick.bind(this);
     this.handleDeclineEvent = this.handleDeclineEvent.bind(this);
     this.handleAcceptEvent = this.handleAcceptEvent.bind(this);
+    this.renderNewMessage = this.renderNewMessage.bind(this);
   }
 
   componentDidMount() {
     this.fetchMessages();
 	}
+
+  renderNewMessage(message) {
+    this.setState({
+      messages: this.state.messages.concat(message)
+    })
+  }
 
   fetchMessages() {
     $.ajax({
@@ -83,6 +90,7 @@ export default class Chat extends React.Component {
             isGoing={ this.state.isGoing }
             handleDeclineEvent={ this.handleDeclineEvent }
             handleAcceptEvent={ this.handleAcceptEvent }
+            renderNewMessage={ this.renderNewMessage }
             messages={ this.state.messages }
           />
         </div>

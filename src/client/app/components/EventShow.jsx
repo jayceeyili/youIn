@@ -20,6 +20,7 @@ const EventShow = (props) => {
       />
       <Chatbox
         messages={ props.messages }
+        renderNewMessage={ props.renderNewMessage }
       />
     </div>
   );
