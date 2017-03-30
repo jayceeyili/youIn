@@ -5,7 +5,7 @@ const AttendingList = props => {
   // functions
 
   return (
-    <div>
+    <div className="ui segment">
       {
         props.friends.map( ( friend ) => (
           <Avatar pic={ friend.photoUrl }/>
@@ -23,10 +23,10 @@ const AttendingList = props => {
       {
         !props.isGoing &&
         <div>
-          <button onClick={ props.handleDeclineEvent }>
+          <button className="ui button" onClick={ props.handleDeclineEvent }>
             Decline
           </button>
-          <button onClick={ props.handleAcceptEvent }>
+          <button className="ui primary button" onClick={ props.handleAcceptEvent }>
             Accept
           </button>
         </div>
