@@ -1,10 +1,8 @@
-
-
 let db = require('../config');
 
 module.exports = {
 
-  get: function () {
+  getAll: function () {
     return db.query('select * from messages');
   },
 
@@ -15,24 +13,13 @@ module.exports = {
         user_id: int
         event_id: int
         text: string
-        created: object/timestamp
+        created: new Date()
         token: string
       }
     */
 
-    /*
-      database messages in the form of
-      {
-        user_id: int
-        event_id: int
-        text: string
-        created: object/timestamp
-        message_id: int
-      }
-    */
-
-    return db.one('insert into messages (user_id, event_id, text)\
-     values (${user_id}, ${event_id}, ${text}) returning *', message);
+    return db.one('insert into messages (event_id, user_id, text, created)\
+     values (${event_id}, ${user_id}, ${text}, ${created}) returning *', message);
   },
 
 }
