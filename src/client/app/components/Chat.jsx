@@ -17,7 +17,7 @@ export default class Chat extends React.Component {
       friendEvents: data.friendEvents,
       currentEvent: data.myEvents[0],
       currentUser: null,
-      messages: null,
+      messages: [],
       isGoing: false
     }
 
