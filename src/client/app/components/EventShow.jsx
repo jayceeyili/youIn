@@ -2,6 +2,7 @@ import React from 'react';
 import ShortInfo from './ShortInfo.jsx';
 import AttendingList from './AttendingList.jsx';
 import MessageInputBox from './MessageInputBox.jsx';
+import Chatbox from './Chatbox.jsx';
 
 const EventShow = props => {
   // functions here

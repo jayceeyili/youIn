@@ -62,10 +62,10 @@ export default class Chat extends React.Component {
           handleDeclineEvent={ this.handleDeclineEvent }
           handleAcceptEvent={ this.handleAcceptEvent }
         />
+        </div>
       </div>
     );
   }
 }
 
 // render(<Chat/>, document.getElementById('app'));
-          // <Chatbox />

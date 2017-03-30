@@ -53,11 +53,11 @@ export default class MessageInputBox extends React.Component {
 
 	render() {
 		return (
-			<div className="message-input-box">
+			<div className="ui action input" className="message-input-box">
 				<input type="text" placeholder="Message"
 					value={ this.state.text }
 					onChange={ this.updateText } />
-				<button
+				<button className="ui button"
 					onClick={ this.sendMessage }>Send</button>
 			</div>
 		)
