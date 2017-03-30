@@ -15,10 +15,10 @@ export default class MessageInputBox extends React.Component {
 	}
 
 	componentDidMount() {
-		let socket = io();
-		this.setState({
-			socket: socket
-		});
+		// let socket = io();
+		// this.setState({
+		// 	socket: socket
+		// });
 	}
 
 	sendMessage() {
@@ -29,8 +29,8 @@ export default class MessageInputBox extends React.Component {
 			created: new Date()
 		}
 		console.log(message);
-		let socket = this.state.socket;
-		socket.emit('send-message', message);
+		// let socket = this.state.socket;
+		// socket.emit('send-message', message);
 	}
 
 	updateText(event) {
@@ -41,7 +41,7 @@ export default class MessageInputBox extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="message-input-box">
 				<input type="text" placeholder="Message"
 					value={ this.state.text }
 					onChange={ this.updateText } />
