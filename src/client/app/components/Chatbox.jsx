@@ -4,9 +4,9 @@ import MessageList from './MessageList.jsx';
 
 const Chatbox = (props) => (
   <div>
+    <MessageList messages={ props.messages } />
     <MessageInputBox />
   </div>
 );
 
-export default Chatbox; 
-    // <MessageList />
+export default Chatbox;

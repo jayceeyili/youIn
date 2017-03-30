@@ -22,7 +22,7 @@ module.exports = (db) => {
     .then(() => {
       return db.query('CREATE TABLE IF NOT EXISTS users (\
         user_id BIGINT not null PRIMARY KEY,\
-        token text,\
+        token varChar(300),\
         firstname varChar(50),\
         lastname varChar(50),\
         photoUrl varChar(150),\

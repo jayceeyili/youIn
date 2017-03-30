@@ -16,7 +16,9 @@ const EventShow = props => {
         handleDeclineEvent={ props.handleDeclineEvent }
         handleAcceptEvent={ props.handleAcceptEvent }
       />
-      <Chatbox />
+      <Chatbox
+        messages={ props.messages }
+      />
     </div>
   );
 };

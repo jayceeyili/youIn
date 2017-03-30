@@ -36,7 +36,7 @@ usersEvents.forEach( (userEvent) => {
   .catch((err) => {
     console.log('this is an error with the user_events', err);
   });
-}); 
+});
 
 messages.forEach( (message) => {
   db.query('INSERT into messages VALUES (${message_id}, ${user_id}, ${event_id}, ${text}, ${created})', message)
@@ -46,4 +46,4 @@ messages.forEach( (message) => {
   .catch((err) => {
     console.log('this is an error with the messages', err);
   });
-}); 
+});
