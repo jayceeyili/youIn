@@ -1,14 +1,14 @@
 import React from 'react';
 
 const MessageListEntry = (props) => (
-  <div>
-    <div>
+  <div className="content">
+    <div className="author">
       { props.message.user_id }
     </div>
-    <div>
+    <div className="text">
       { props.message.text }
     </div>
-    <div>
+    <div className="date">
       { props.message.created}
     </div>
   </div>

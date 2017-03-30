@@ -10,7 +10,7 @@ const EventShow = (props) => {
 
   return (
     <div className='event-show'>
-      <CreateEventButton friends={props.friends}/>
+      <CreateEventButton friends={ props.friends }/>
       <ShortInfo event={ props.event }/>
       <AttendingList
         friends={ props.friends }

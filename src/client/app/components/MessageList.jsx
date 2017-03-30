@@ -2,7 +2,7 @@ import React from 'react';
 import MessageListEntry from './MessageListEntry.jsx';
 
 const MessageList = props => (
-  <div>
+  <div className="ui comments">
     {
       props.messages.map( message => (
         <MessageListEntry message={ message } />
