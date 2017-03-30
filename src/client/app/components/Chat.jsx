@@ -17,12 +17,33 @@ export default class Chat extends React.Component {
       friendEvents: data.friendEvents,
       currentEvent: data.myEvents[0],
       currentUser: null,
+      messages: null,
       isGoing: false
     }
 
     this.handleSidebarEventClick = this.handleSidebarEventClick.bind(this);
     this.handleDeclineEvent = this.handleDeclineEvent.bind(this);
     this.handleAcceptEvent = this.handleAcceptEvent.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchMessages();
+	}
+
+  fetchMessages() {
+    $.ajax({
+      url: '/messages',
+      method: 'GET',
+      contentType: 'application/json',
+      success: data => {
+        this.setState({
+          messages: data
+        })
+      },
+      error: err => {
+        console.err('err', err);
+      }
+    });
   }
 
   handleDeclineEvent() {
@@ -56,13 +77,14 @@ export default class Chat extends React.Component {
             handleSidebarEventClick={ this.handleSidebarEventClick }/>
         </div>
         <div className="pushable">
-        <EventShow
-          friends={ this.state.friends }
-          event={ this.state.currentEvent }
-          isGoing={ this.state.isGoing }
-          handleDeclineEvent={ this.handleDeclineEvent }
-          handleAcceptEvent={ this.handleAcceptEvent }
-        />
+          <EventShow
+            friends={ this.state.friends }
+            event={ this.state.currentEvent }
+            isGoing={ this.state.isGoing }
+            handleDeclineEvent={ this.handleDeclineEvent }
+            handleAcceptEvent={ this.handleAcceptEvent }
+            messages={ this.state.messages }
+          />
         </div>
       </div>
     );
