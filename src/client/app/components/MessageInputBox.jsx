@@ -16,10 +16,16 @@ export default class MessageInputBox extends React.Component {
 	}
 
 	componentDidMount() {
-		// let socket = io();
-		// this.setState({
-		// 	socket: socket
-		// });
+		let socket = io('http://localhost:8080/');
+		socket.on('connect', function() {
+		console.log('Socket Id: ', socket.id);
+		})
+		socket.on('new-message', function(data) {
+			console.log('fdsfds', data);
+		})
+		this.setState({
+			socket: socket
+		});
 	}
 
 	sendMessage() {
@@ -30,19 +36,19 @@ export default class MessageInputBox extends React.Component {
 			created: new Date().toISOString()
 		}
 
-		// let socket = this.state.socket;
-		// socket.emit('send-message', message);
-		$.ajax({
-			url: '/messages',
-			method: 'POST',
-			data: message,
-			success: function(results) {
-				console.log(results);
-			},
-			error: function(err) {
-				console.log('Error: ', err);
-			}
-		});
+		let socket = this.state.socket;
+		socket.emit('send-message', message);
+		// $.ajax({
+		// 	url: '/messages',
+		// 	method: 'POST',
+		// 	data: message,
+		// 	success: function(results) {
+		// 		console.log(results);
+		// 	},
+		// 	error: function(err) {
+		// 		console.log('Error: ', err);
+		// 	}
+		// });
 	}
 
 	updateText(event) {
