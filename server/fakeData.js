@@ -6,6 +6,7 @@ var db = require('./config');
 var users = require('./data').users;
 var events = require('./data').events;
 var usersEvents = require('./data').usersEvents;
+var messages = require('./data').messages;
 
 users.forEach( (user) => {
   db.query('INSERT into users VALUES (${user_id}, ${token}, ${firstname}, ${lastname}, ${photoUrl}, ${email})', user)
@@ -34,5 +35,15 @@ usersEvents.forEach( (userEvent) => {
   })
   .catch((err) => {
     console.log('this is an error with the user_events', err);
+  });
+}); 
+
+messages.forEach( (message) => {
+  db.query('INSERT into messages VALUES (${message_id}, ${user_id}, ${event_id}, ${text}, ${created})', message)
+  .then((result) => {
+    console.log('Messages added: ', result);
+  })
+  .catch((err) => {
+    console.log('this is an error with the messages', err);
   });
 }); 
