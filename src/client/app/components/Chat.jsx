@@ -19,6 +19,8 @@ export default class Chat extends React.Component {
       currentEvent: this.props.allState.ownerEvents[0],
       messages: [],
       isGoing: false,
+      buttonAccept: 'ui button',
+      buttonDecline: 'ui button',
       socket: ''
     }
 
@@ -117,6 +119,8 @@ export default class Chat extends React.Component {
             getEvents={ this.props.getEvents }
             history={ this.props.history }
             accessToken={ this.props.allState.facebookToken }
+            buttonDecline={ this.state.buttonDecline }
+            buttonAccept={ this.state.buttonAccept } 
             currentEvent={ this.state.currentEvent }
             currentUser={ this.props.currentUser }
             socket={ this.state.socket }

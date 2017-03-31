@@ -13,7 +13,8 @@ module.exports = function(req, res) {
         return t.query('INSERT into USERS_EVENTS (event_id, user_id) VALUES ($1, $2)', [eventId, id])
       })
     )
-    .then( () => {
+    .then( (result) => {
+      io.to('room:new-rooms').emit('new-room', userIds);
       return t.query('INSERT into USERS_EVENTS (event_id, user_id, current_status) VALUES ($1, $2, $3)', [eventId, req.user.user_id, 'accepted'])
     });
 
@@ -23,7 +24,6 @@ module.exports = function(req, res) {
     /**
       * IO
       */
-    io.to('room:new-rooms').emit('new-room', result);
     res.status(201).send('updated users_events table') 
   });
 };
