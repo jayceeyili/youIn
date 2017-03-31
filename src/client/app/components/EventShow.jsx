@@ -4,6 +4,7 @@ import AttendingList from './AttendingList.jsx';
 import MessageInputBox from './MessageInputBox.jsx';
 import Chatbox from './Chatbox.jsx';
 import CreateEventButton from '../CreateEventButton.jsx';
+import DeleteButton from './DeleteButton.jsx';
 
 const EventShow = (props) => (
   // functions here
