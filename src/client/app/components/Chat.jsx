@@ -37,7 +37,7 @@ export default class Chat extends React.Component {
 
   initSockets() {
     let socket = io('http://localhost:8080/');
-    /*  Joins channels for all relevant events and a 
+    /*  Joins channels for all relevant events and a
         default room:new-rooms channel */
     socket.emit('chat-join', {
       user_id: this.props.currentUser
@@ -78,16 +78,40 @@ export default class Chat extends React.Component {
     });
   }
 
+  updateEventStatus(url) {
+    $.ajax({
+      url: url,
+      method: 'POST',
+      'Content-type': 'application/json',
+      beforeSend: (xhr) => {
+        xhr.setRequestHeader ('Authorization', 'Bearer ' + this.props.allState.facebookToken);
+      },
+      data: {
+        eventId: JSON.stringify(this.state.currentEvent.event_id)
+      },
+      success: function() {
+        console.log('Update Event Status Successfully');
+      },
+      error: function(err) {
+        console.log('Update Event Status Error: ', err);
+      }
+    });
+  }
+
   handleDeclineEvent() {
     this.setState({
       isGoing: false,
     })
+
+    this.updateEventStatus('/reject');
   }
 
   handleAcceptEvent() {
     this.setState({
       isGoing: true
     })
+
+    this.updateEventStatus('/accept');
   }
 
   handleSidebarEventClick(event) {
@@ -104,7 +128,7 @@ export default class Chat extends React.Component {
           <Sidebar myEvents={ this.state.myEvents }
             friendEvents={ this.state.friendEvents }
             handleSidebarEventClick={ this.handleSidebarEventClick }
-            socket={ this.state.socket } 
+            socket={ this.state.socket }
           />
         </div>
         <div className="pushable">
