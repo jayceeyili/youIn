@@ -39,6 +39,46 @@ app.use('/', express.static(path.join(__dirname, '../src/client')));
 
 app.get('/users', handler.getUsers);
 
+app.get('/users/friends', function(req, res) {
+  /*req.body {
+    user_id:
+  }*/
+  Message.getUserFriends(req.body.user_id)
+  .then(function(result) {
+    res.status(200).send(result);
+  })
+  .catch(function(error) {
+    res.status(400).send(error);
+  })
+})
+
+app.post('/users/add', function(req, res) {
+  /*req.body {
+    user_id:
+    friend_id:
+  }*/
+  Message.getUserFriends(req.body.user_id)
+  .then(function(result) {
+    var found = false;
+    result.map(function(item) {
+      if (item.user_id === req.body.friend_id) {
+        found = true;
+      }
+    });
+    if (found === true) {
+      res.status(400).send('person is already a friend');
+    } else {
+      return Message.addUserFriend(req.body)
+      .then(function(result) {
+        res.status(201).send('friend request completed');
+      })
+    }
+  })
+  .catch(function(error) {
+    res.status(400).send('bad request');
+  })
+})
+
 app.get('/events', passport.authenticate('facebook-token'), handler.getEvents);
 
 app.post('/events/users', passport.authenticate('facebook-token'), handler.addUsersEvents);
