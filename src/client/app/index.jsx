@@ -59,6 +59,7 @@ class App extends React.Component {
   }
 
   getEvents(history, callback) {
+    let context = this; 
     $.ajax({
       url: '/events',
       method: 'GET',
@@ -92,7 +93,12 @@ class App extends React.Component {
             history={props.history}
             getEvents={this.getEvents.bind(this)}/>)
         }} />
-        <Route path='/chat' component={Chat} />
+        <Route path='/chat' component={(props) => {
+          return (
+            <Chat history={ props.history } 
+                  getEvents={ this.getEvents.bind(this)} />
+          )
+        }} />
       </div>
       </Router>
     )

@@ -13,7 +13,7 @@ class CreateEventButton extends React.Component {
       title: '',
       where: '',
       date: '',
-      time: '',
+      time: '12:00:00',
       invitees: {},
       description: ''
     }
@@ -80,7 +80,7 @@ class CreateEventButton extends React.Component {
     //post request on new route, events/users
     //include user ids from attendees
     //include data from the event that was created
-
+    let context = this; 
     let users = this.state.invitees;
     let userIds = [];
     for(let i in users) {
@@ -99,8 +99,9 @@ class CreateEventButton extends React.Component {
       success: function(data) {
         console.log('success from addToUsers_Events in CreateEventButton :', data);
         this.hideModal();
-        this.props.getEvents(this.props.history, function(result) {
-          this.setState({
+        console.log(this, context, 'stuff context')
+        context.props.getEvents(context.props.history, function(result) {
+          context.setState({
             ownerEvents: result.ownerEvents,
             friendEvents: result.friendEvents
           });
@@ -108,7 +109,7 @@ class CreateEventButton extends React.Component {
       }.bind(this),
       error: function(err) {
         console.log('error from addToUsers_Events  in CreateEventButton', err);
-        this.props.history.push('/');
+        // this.props.history.push('/');
       }.bind(this)
     });
   }
@@ -117,6 +118,7 @@ class CreateEventButton extends React.Component {
   handleSubmit (event) {
     let context = this;
     event.preventDefault();
+    // console.log(this);
     let eventData = {
       owner: '1',//this is hardcoded - we need to have the owner come from who is logged in.
       title: this.state.title,
@@ -125,6 +127,7 @@ class CreateEventButton extends React.Component {
       date: this.state.date,
       time: this.state.time,
     }
+    console.log(eventData);
   $.ajax({
     url: '/events/create',
     method: 'POST',
@@ -135,8 +138,10 @@ class CreateEventButton extends React.Component {
       context.addToUsers_Events(data.event_id);
     },
     error: function(err) {
+      console.log('ajax', context);
       console.log('error in ajax request in CreateEventButton', err);
-      this.props.history.push('/');
+      // console.log(this, 'what is this');
+      // this.props.history.push('/');
     }
   })
 
@@ -145,6 +150,7 @@ class CreateEventButton extends React.Component {
 
 
   render () {
+    console.log(this.props)
     return (
       <div>
         <div><button onClick={this.showModal.bind(this)} id="create_event" className="col-md-4 col-md-offset-4">Create Event</button></div>
@@ -174,7 +180,7 @@ class CreateEventButton extends React.Component {
                   <input
                     value={this.state.time}
                     onChange={this.handleChange.bind(this, 'time')}
-                    type="time" value="12:00:00" required
+                    type="time" required
                     /> 
                 </div>
 
