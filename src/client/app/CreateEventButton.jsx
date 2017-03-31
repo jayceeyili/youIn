@@ -118,7 +118,6 @@ class CreateEventButton extends React.Component {
   handleSubmit (event) {
     let context = this;
     event.preventDefault();
-    // console.log(this);
     let eventData = {
       owner: '1',//this is hardcoded - we need to have the owner come from who is logged in.
       title: this.state.title,
@@ -127,44 +126,53 @@ class CreateEventButton extends React.Component {
       date: this.state.date,
       time: this.state.time,
     }
-    console.log(eventData);
-  $.ajax({
-    url: '/events/create',
-    method: 'POST',
-    data: JSON.stringify(eventData),
-    contentType: 'application/json',
-    success: function(data) {
-      console.log('data from ajax in CreateEventButton', data.event_id);
-      context.addToUsers_Events(data.event_id);
-    },
-    error: function(err) {
-      console.log('ajax', context);
-      console.log('error in ajax request in CreateEventButton', err);
-      // console.log(this, 'what is this');
-      // this.props.history.push('/');
-    }
-  })
-
+    $.ajax({
+      url: '/events/create',
+      method: 'POST',
+      data: JSON.stringify(eventData),
+      contentType: 'application/json',
+      success: function(data) {
+        console.log('data from ajax in CreateEventButton', data.event_id);
+        context.addToUsers_Events(data.event_id);
+      },
+      error: function(err) {
+        console.log('ajax', context);
+        console.log('error in ajax request in CreateEventButton', err);
+      }
+    })
   }
-
-
 
   render () {
     console.log(this.props)
     return (
       <div>
-        <div><button onClick={this.showModal.bind(this)} id="create_event" className="col-md-4 col-md-offset-4">Create Event</button></div>
-        <Modal ref="modal">
+        <div>
+          <button id="create_event" className="ui primary button"
+            onClick={this.showModal.bind(this)} >Create Event</button>
+        </div>
+        
+        <Modal ref="modal" 
+          modalStyle={{width: '80%'}}>
           <div className="container-fluid">
-            <form onSubmit={this.handleSubmit.bind(this)}>
+            <form className="ui form"
+              onSubmit={this.handleSubmit.bind(this)}>
               <div className="row">
-                <div className="col-md-8">
-                  <h4 className='create'>Event Name</h4>
-                  <input 
-                    value={this.state.title} 
-                    type="text"
-                    onChange={this.handleChange.bind(this, 'title')} required
-                    />
+                <div className="ui large header">
+                  Create a New Event
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="inline fields">
+                    <div className="sixteen wide field">
+                      <label>Event Name</label>
+                      <input 
+                        value={this.state.title} 
+                        type="text"
+                        onChange={this.handleChange.bind(this, 'title')} required
+                        />
+                    </div>
+                  </div>
                   <h4 className='create'>Where</h4>
                   <input 
                     value={this.state.where}
