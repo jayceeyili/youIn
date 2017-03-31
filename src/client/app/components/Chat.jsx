@@ -90,8 +90,10 @@ export default class Chat extends React.Component {
             isGoing={ this.state.isGoing }
             handleDeclineEvent={ this.handleDeclineEvent }
             handleAcceptEvent={ this.handleAcceptEvent }
-            renderNewMessage={ this.renderNewMessage }
+            renderNewMessage={ this.rendreNewMessage }
             messages={ this.state.messages }
+            getEvents={ this.props.getEvents }
+            history={ this.props.history }
           />
         </div>
       </div>
