@@ -21,9 +21,10 @@ module.exports = function(req, res) {
     
   })
   .then((result) => {
-    /**
-      * IO
-      */
+     /**
+       * IO
+       */
+      // get array 
     res.status(201).send('updated users_events table') 
   });
 };
