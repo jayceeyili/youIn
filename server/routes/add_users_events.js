@@ -2,6 +2,7 @@
 
 let db = require('../config');
 let io = require('../io').io();
+let Events = require('../models/events');
 
 module.exports = function(req, res) {
   let userIds = req.body.userIds;
@@ -14,7 +15,13 @@ module.exports = function(req, res) {
       })
     )
     .then( (result) => {
-      io.to('room:new-rooms').emit('new-room', userIds);
+      Events.getOneEvent(eventId)
+        .then(result => {
+          io.to('room:new-rooms').emit('new-room', {
+            users: userIds,
+            event: result[0]
+          });
+        });
       return t.query('INSERT into USERS_EVENTS (event_id, user_id, current_status) VALUES ($1, $2, $3)', [eventId, req.user.user_id, 'accepted'])
     });
 
