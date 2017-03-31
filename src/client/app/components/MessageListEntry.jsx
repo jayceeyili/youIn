@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 
 const MessageListEntry = (props) => (
   <div className="content">
@@ -9,7 +10,7 @@ const MessageListEntry = (props) => (
       { props.message.text }
     </div>
     <div className="date">
-      { props.message.created}
+      { <Moment fromNow ago>{ props.message.created }</Moment> } ago
     </div>
   </div>
 );
