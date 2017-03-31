@@ -14,10 +14,10 @@ module.exports = {
 			console.log('Connected to sockets.');
 
 			socket.on('chat-join', function(data) {
-				/* assumes object 
+				/* assumes object
 					{
 						user_id: int
-					}		
+					}
 				*/
 				Message.getUserEvents(data.user_id)
 				.then(function(result) {
@@ -45,7 +45,7 @@ module.exports = {
 			  }
 			  Message.getUserEvent(obj)
 			  .then((result) => {
-			  	if (result.length > 0) {
+			  	// if (result.length > 0) {
 				  // socket.join(`${room}`, function() {
 				    // new message object retrieved from db.
 				    Message.write(data)
@@ -58,10 +58,10 @@ module.exports = {
 					      console.error(err, 'an error in db retrieval');
 					      socket.emit('error', 'bad request with write');
 					    });
-				  // });			  		
-			  	} else {
-			  		socket.emit('error', 'no access');
-			  	}
+				  // });
+			  	// } else {
+			  	// 	socket.emit('error', 'no access');
+			  	// }
 			  }).catch((err) => {
 			  	console.error(err, 'error in authentication, user not listed with event');
 			  	socket.emit('error', 'bad request with getUserEvent');
