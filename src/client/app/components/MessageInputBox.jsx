@@ -28,6 +28,12 @@ export default class MessageInputBox extends React.Component {
 		});
 	}
 
+  clearInput() {
+    this.setState({
+      text: ''
+    })
+  }
+
 	sendMessage() {
 		let message = {
 			event_id: this.props.eventId || 2,
@@ -39,6 +45,7 @@ export default class MessageInputBox extends React.Component {
 		let socket = this.state.socket;
 		socket.emit('send-message', message);
     this.props.renderNewMessage(message);
+    this.clearInput();
 		// $.ajax({
 		// 	url: '/messages',
 		// 	method: 'POST',
