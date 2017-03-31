@@ -28,25 +28,37 @@ module.exports = {
 				});
 			});
 
-			socket.on('new-event', function(data) {
-
-			});
-
 			socket.on('send-message', function(data) {
 				console.log('Sockets: received message ', data);
 			  var room = data.event_id;
-			  // socket.join(`${room}`, function() {
-			    // new message object retrieved from db.
-			    Message.write(data)
-			    	.then(function (result) {
-			    // sends a response of new-message event to all people in the event room.
-				      io.to(`${room}`, 'a new message')
-				      .emit('new-message', result);
-				    })
-				    .catch((err) => {
-				      console.error(err, 'an error in db retrieval');
-				    });
-			  // });
+			  var user = data.user_id;
+			  var obj = {
+			  	user_id: user,
+			  	event_id: room
+			  }
+			  Message.getUserEvent(obj)
+			  .then((result) => {
+			  	if (result.length > 0) {
+				  // socket.join(`${room}`, function() {
+				    // new message object retrieved from db.
+				    Message.write(data)
+				    	.then(function (result) {
+				    // sends a response of new-message event to all people in the event room.
+					      io.to(`${room}`, 'a new message')
+					      .emit('new-message', result);
+					    })
+					    .catch((err) => {
+					      console.error(err, 'an error in db retrieval');
+					      socket.emit('error', 'bad request with write');
+					    });
+				  // });			  		
+			  	} else {
+			  		socket.emit('error', 'no access');
+			  	}
+			  }).catch((err) => {
+			  	console.error(err, 'error in authentication, user not listed with event');
+			  	socket.emit('error', 'bad request with getUserEvent');
+			  });
 			});
 
 			socket.on('disconnect', function() {
