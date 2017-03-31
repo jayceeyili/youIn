@@ -39,7 +39,7 @@ app.use('/', express.static(path.join(__dirname, '../src/client')));
 
 app.get('/users', handler.getUsers);
 
-app.get('/users/friends', function(req, res) {
+app.post('/users/friends', function(req, res) {
   /*req.body {
     user_id:
   }*/
@@ -57,12 +57,14 @@ app.post('/users/add', function(req, res) {
     user_id:
     friend_id:
   }*/
-  Message.getUserFriends(req.body.user_id)
+
+  Message.getUserFriendsID(req.body.user_id)
   .then(function(result) {
     var found = false;
     result.map(function(item) {
-      if (item.user_id === req.body.friend_id) {
+      if (item.user_id === `${req.body.friend_id}`) {
         found = true;
+        console.log(found);
       }
     });
     if (found === true) {
