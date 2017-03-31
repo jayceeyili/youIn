@@ -3,7 +3,6 @@ import Avatar from './Avatar.jsx';
 
 const AttendingList = props => {
   // functions
-
   return (
     <div className="ui segment">
       {
@@ -16,20 +15,20 @@ const AttendingList = props => {
       }
       {
         props.isGoing &&
-        <div>
-          <button onClick={ props.handleDeclineEvent }>
-            Quit
+        <div> 
+          <button className={ props.buttonDecline } onClick={ props.handleDeclineEvent }>
+            Decline
           </button>
-          <div>Is going</div>
+          <button className={ props.buttonAccept }>Going</button>
         </div>
       }
       {
         !props.isGoing &&
         <div>
-          <button className="ui button" onClick={ props.handleDeclineEvent }>
-            Decline
+          <button className={ props.buttonDecline } onClick={ props.handleDeclineEvent }>
+            { props.isGoing === '' ? 'Decline' : 'Not Going' }
           </button>
-          <button className="ui primary button" onClick={ props.handleAcceptEvent }>
+          <button className={ props.buttonAccept } onClick={ props.handleAcceptEvent }>
             Accept
           </button>
         </div>
