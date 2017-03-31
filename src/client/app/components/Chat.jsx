@@ -73,7 +73,6 @@ export default class Chat extends React.Component {
   }
 
   render() {
-    console.log(this.state, "STATEEE")
     return (
       <div>
         <div className="ui visible sidebar">

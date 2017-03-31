@@ -18,7 +18,6 @@ export default class ShortInfo extends React.Component {
   }
 
   render() {
-    console.log(this.props, "YAYAYYA")
     return (
       <div className="ui segment" onClick={ this.handleEventInfoClick }>
         <h1>{ this.props.event.title }</h1>
