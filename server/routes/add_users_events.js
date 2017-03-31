@@ -24,7 +24,6 @@ module.exports = function(req, res) {
      /**
        * IO
        */
-      // get array 
     res.status(201).send('updated users_events table') 
   });
 };
