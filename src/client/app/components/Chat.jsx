@@ -12,10 +12,10 @@ export default class Chat extends React.Component {
     super(props);
 
     this.state = {
-      friends: data.users,
-      myEvents: data.myEvents,
-      friendEvents: data.friendEvents,
-      currentEvent: data.myEvents[0],
+      friends: this.props.allState.friends,
+      myEvents: this.props.allState.ownerEvents,
+      friendEvents: this.props.allState.friendEvents,
+      currentEvent: this.props.allState.ownerEvents[0],
       currentUser: null,
       messages: [],
       isGoing: false
@@ -87,7 +87,7 @@ export default class Chat extends React.Component {
             isGoing={ this.state.isGoing }
             handleDeclineEvent={ this.handleDeclineEvent }
             handleAcceptEvent={ this.handleAcceptEvent }
-            renderNewMessage={ this.rendreNewMessage }
+            renderNewMessage={ this.renderNewMessage }
             messages={ this.state.messages }
             getEvents={ this.props.getEvents }
             history={ this.props.history }

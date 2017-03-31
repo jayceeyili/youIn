@@ -64,9 +64,7 @@ class App extends React.Component {
       url: '/events',
       method: 'GET',
       contentType: 'application/json',
-      success: function() {
-        callback.bind(this)
-      },
+      success: callback.bind(this),
       error: function(err) {
         if (err.status >= 400) {
           history.push('/');
@@ -96,7 +94,8 @@ class App extends React.Component {
         <Route path='/chat' component={(props) => {
           return (
             <Chat history={ props.history } 
-                  getEvents={ this.getEvents.bind(this)} />
+                  getEvents={ this.getEvents.bind(this)} 
+                  allState={ this.state }/>
           )
         }} />
       </div>
