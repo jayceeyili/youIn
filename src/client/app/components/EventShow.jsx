@@ -8,13 +8,13 @@ import DeleteButton from './DeleteButton.jsx';
 
 const EventShow = (props) => (
   <div className='event-show'>
-    <CreateEventButton 
-      friends={ props.friends } 
-      getEvents={ props.getEvents } 
-      history={ props.history } 
+    <CreateEventButton
+      friends={ props.friends }
+      getEvents={ props.getEvents }
+      history={ props.history }
     />
-    <ShortInfo 
-      event={ props.event } 
+    <ShortInfo
+      event={ props.event }
     />
     <AttendingList
       friends={ props.friends }
@@ -24,8 +24,8 @@ const EventShow = (props) => (
       buttonAccept={ props.buttonAccept }
       buttonDecline={ props.buttonDecline }
     />
-    <DeleteButton 
-      event={ props.event } 
+    <DeleteButton
+      event={ props.event }
       accessToken={ props.accessToken }
     />
     <Chatbox

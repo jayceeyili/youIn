@@ -89,6 +89,7 @@ export default class Chat extends React.Component {
   }
 
   handleSidebarEventClick(event) {
+    console.log('this is the current', event);
     this.setState({
       currentEvent: event
     })
@@ -109,10 +110,10 @@ export default class Chat extends React.Component {
             friends={ this.state.friends }
             event={ this.state.currentEvent }
             isGoing={ this.state.isGoing }
+            messages={ this.state.messages }
             handleDeclineEvent={ this.handleDeclineEvent }
             handleAcceptEvent={ this.handleAcceptEvent }
             renderNewMessage={ this.renderNewMessage }
-            messages={ this.state.messages }
             getEvents={ this.props.getEvents }
             history={ this.props.history }
             accessToken={ this.props.allState.facebookToken }
