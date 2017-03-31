@@ -80,7 +80,7 @@ class CreateEventButton extends React.Component {
     //post request on new route, events/users
     //include user ids from attendees
     //include data from the event that was created
-    let context = this; 
+    let context = this;
     let users = this.state.invitees;
     let userIds = [];
     for(let i in users) {
@@ -148,8 +148,8 @@ class CreateEventButton extends React.Component {
           <button id="create_event" className="ui primary button"
             onClick={this.showModal.bind(this)} >Create Event</button>
         </div>
-        
-        <Modal ref="modal" 
+
+        <Modal ref="modal"
           modalStyle={{width: '80%'}}>
           <div className="container-fluid">
             <form className="ui form"
@@ -164,21 +164,21 @@ class CreateEventButton extends React.Component {
                   <div className="inline fields">
                     <div className="sixteen wide field">
                       <label>Event Name</label>
-                      <input 
-                        value={this.state.title} 
+                      <input
+                        value={this.state.title}
                         type="text"
                         onChange={this.handleChange.bind(this, 'title')} required
                         />
                     </div>
                   </div>
                   <h4 className='create'>Where</h4>
-                  <input 
+                  <input
                     value={this.state.where}
                     onChange={this.handleChange.bind(this, 'where')}
                     type="text" required
                     />
                   <h4 className='create'>When</h4>
-                  <input 
+                  <input
                     value={this.state.date}
                     onChange={this.handleChange.bind(this, 'date')}
                     type="date" required
@@ -187,7 +187,7 @@ class CreateEventButton extends React.Component {
                     value={this.state.time}
                     onChange={this.handleChange.bind(this, 'time')}
                     type="time" required
-                    /> 
+                    />
                 </div>
 
 
