@@ -57,7 +57,6 @@ app.post('/users/add', function(req, res) {
     user_id:
     friend_id:
   }*/
-
   Message.getUserFriendsID(req.body.user_id)
   .then(function(result) {
     var found = false;
@@ -130,7 +129,7 @@ app.get('*', handler.wildCard);
 
 
 
-// SERVER SOCKET STUFF     
+// SERVER SOCKET STUFF
 // *************************
 // const io = require('socket.io')(server);
 /*
@@ -143,4 +142,3 @@ app.get('*', handler.wildCard);
     token: string
   }
 */
-

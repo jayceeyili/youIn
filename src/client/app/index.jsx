@@ -14,6 +14,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      users: [],
       friends: [],
       facebookToken: '',
       userName: '',
@@ -28,7 +29,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let context = this;
-    
+
     context.getUsers();
   }
   setToken(token) {
@@ -38,7 +39,7 @@ class App extends React.Component {
   }
   setName(name) {
     this.setState({
-      userName: name 
+      userName: name
     });
   }
 
@@ -56,7 +57,7 @@ class App extends React.Component {
       contentType: 'application/json',
       success: function(data) {
         console.log('result of get on /users', data);
-        context.setState({friends: data});
+        context.setState({users: data});
       },
       error: function(err) {
         console.log('error in ajax get request in CreateEventButton', err);
@@ -64,8 +65,24 @@ class App extends React.Component {
     })
   }
 
+  getFriends() {
+    $.ajax({
+      url: '/users/friends',
+      method: 'POST',
+      dataTape: 'json',
+      data: JSON.stringify(this.state.user),
+      success: function(data) {
+        console.log('result of POST on /users/friends', data);
+        context.setState({friends: data});
+      },
+      error: function(err) {
+        console.log('error in ajax getFriends', err);
+      }
+    })
+  }
+
   getEvents(history, callback) {
-    let context = this; 
+    let context = this;
     $.ajax({
       url: '/events',
       method: 'GET',
@@ -84,25 +101,25 @@ class App extends React.Component {
       <Router>
       <div>
         <Route exact path='/' component={(props) => {
-          return (<Facebook history={props.history} 
+          return (<Facebook history={props.history}
             setToken={this.setToken.bind(this)}
-            setName={this.setName.bind(this)} 
+            setName={this.setName.bind(this)}
             getEvents={this.getEvents.bind(this)}
             setCurrentUser={ this.setCurrentUser } />
           )
         }} />
         <Route path='/homepage' component={(props) => {
           return ( <Homepage ownerEvents={this.state.ownerEvents}
-            friendEvents={this.state.friendEvents} friends={this.state.friends} 
+            friendEvents={this.state.friendEvents} friends={this.state.friends}
             accessToken={this.state.facebookToken} userName={this.state.userName}
             history={props.history}
             getEvents={this.getEvents.bind(this)}/>)
         }} />
         <Route path='/chat' component={(props) => {
           return (
-            <Chat 
-              history={ props.history } 
-              getEvents={ this.getEvents.bind(this)} 
+            <Chat
+              history={ props.history }
+              getEvents={ this.getEvents.bind(this)}
               allState={ this.state }
               currentUser={ this.state.user }
             />
