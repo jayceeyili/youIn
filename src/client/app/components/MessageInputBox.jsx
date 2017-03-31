@@ -7,25 +7,11 @@ export default class MessageInputBox extends React.Component {
 		super(props);
 
 		this.state = {
-			text: '',
-			socket: ''
+			text: ''
 		}
 
 		this.updateText = this.updateText.bind(this);
 		this.sendMessage = this.sendMessage.bind(this);
-	}
-
-	componentDidMount() {
-		let socket = io('http://localhost:8080/');
-		socket.on('connect', function() {
-		console.log('Socket Id: ', socket.id);
-		})
-		socket.on('new-message', function(data) {
-			console.log('fdsfds', data);
-		})
-		this.setState({
-			socket: socket
-		});
 	}
 
   clearInput() {
@@ -36,27 +22,15 @@ export default class MessageInputBox extends React.Component {
 
 	sendMessage() {
 		let message = {
-			event_id: this.props.eventId || 2,
-			user_id: this.props.userId || 2,
+			event_id: this.props.currentEvent.event_id,
+			user_id: this.props.currentUser,
 			text: this.state.text,
 			created: new Date().toISOString()
 		}
 
-		let socket = this.state.socket;
-		socket.emit('send-message', message);
+		this.props.socket.emit('send-message', message);
     this.props.renderNewMessage(message);
     this.clearInput();
-		// $.ajax({
-		// 	url: '/messages',
-		// 	method: 'POST',
-		// 	data: message,
-		// 	success: function(results) {
-		// 		console.log(results);
-		// 	},
-		// 	error: function(err) {
-		// 		console.log('Error: ', err);
-		// 	}
-		// });
 	}
 
 	updateText(event) {

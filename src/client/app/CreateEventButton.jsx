@@ -99,7 +99,6 @@ class CreateEventButton extends React.Component {
       success: function(data) {
         console.log('success from addToUsers_Events in CreateEventButton :', data);
         this.hideModal();
-        console.log(this, context, 'stuff context')
         context.props.getEvents(context.props.history, function(result) {
           context.setState({
             ownerEvents: result.ownerEvents,
@@ -143,7 +142,6 @@ class CreateEventButton extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <div>
         <div>

@@ -6,7 +6,10 @@ const Chatbox = (props) => (
   <div>
     <MessageList messages={ props.messages } />
     <MessageInputBox
+    	currentUser={ props.currentUser }
+    	currentEvent={ props.currentEvent }
       renderNewMessage={ props.renderNewMessage }
+      socket= { props.socket }
     />
   </div>
 );

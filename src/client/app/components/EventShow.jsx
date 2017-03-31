@@ -7,7 +7,6 @@ import CreateEventButton from '../CreateEventButton.jsx';
 import DeleteButton from './DeleteButton.jsx';
 
 const EventShow = (props) => (
-  // functions here
   <div className='event-show'>
     <CreateEventButton 
       friends={ props.friends } 
@@ -30,8 +29,11 @@ const EventShow = (props) => (
       accessToken={ props.accessToken }
     />
     <Chatbox
+      currentUser={ props.currentUser }
       messages={ props.messages }
       renderNewMessage={ props.renderNewMessage }
+      currentEvent={ props.currentEvent }
+      socket={ props.socket }
     />
   </div>
 );
