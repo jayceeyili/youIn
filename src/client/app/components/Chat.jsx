@@ -18,7 +18,9 @@ export default class Chat extends React.Component {
       currentEvent: this.props.allState.ownerEvents[0],
       currentUser: null,
       messages: [],
-      isGoing: false
+      isGoing: '',
+      buttonAccept: 'ui button',
+      buttonDecline: 'ui button'
     }
 
     this.handleSidebarEventClick = this.handleSidebarEventClick.bind(this);
@@ -56,12 +58,16 @@ export default class Chat extends React.Component {
   handleDeclineEvent() {
     this.setState({
       isGoing: false,
+      buttonDecline: 'ui primary button',
+      buttonAccept: 'ui button'
     })
   }
 
   handleAcceptEvent() {
     this.setState({
       isGoing: true,
+      buttonAccept: 'ui primary button',
+      buttonDecline: 'ui button'
       // friends: friends.push(currentUser);
     })
   }
@@ -92,6 +98,8 @@ export default class Chat extends React.Component {
             getEvents={ this.props.getEvents }
             history={ this.props.history }
             accessToken={ this.props.allState.facebookToken }
+            buttonDecline={ this.state.buttonDecline }
+            buttonAccept={ this.state.buttonAccept }
           />
         </div>
       </div>

@@ -22,6 +22,8 @@ const EventShow = (props) => (
       isGoing={ props.isGoing }
       handleDeclineEvent={ props.handleDeclineEvent }
       handleAcceptEvent={ props.handleAcceptEvent }
+      buttonAccept={ props.buttonAccept }
+      buttonDecline={ props.buttonDecline }
     />
     <DeleteButton 
       event={ props.event } 
