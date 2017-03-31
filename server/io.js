@@ -45,7 +45,7 @@ module.exports = {
 			  }
 			  Message.getUserEvent(obj)
 			  .then((result) => {
-			  	// if (result.length > 0) {
+			  	if (result.length > 0) {
 				  // socket.join(`${room}`, function() {
 				    // new message object retrieved from db.
 				    Message.write(data)
@@ -59,9 +59,9 @@ module.exports = {
 					      socket.emit('error', 'bad request with write');
 					    });
 				  // });
-			  	// } else {
-			  	// 	socket.emit('error', 'no access');
-			  	// }
+			  	} else {
+			  		socket.emit('error', 'no access');
+			  	}
 			  }).catch((err) => {
 			  	console.error(err, 'error in authentication, user not listed with event');
 			  	socket.emit('error', 'bad request with getUserEvent');
