@@ -42,7 +42,7 @@ module.exports = (db) => {
     .then(() => {
       return db.query('CREATE TABLE IF NOT EXISTS messages (\
         message_id serial PRIMARY KEY,\
-        user_id  int not null,\
+        user_id  BIGINT not null,\
         event_id int not null,\
         text text not null,\
         created timestamp without time zone);')

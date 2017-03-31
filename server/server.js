@@ -7,14 +7,20 @@ let cookieParser = require('cookie-parser');
 let session = require('express-session');
 let passport = require('./middleware/initPassport');
 let path = require('path');
-let handler = require('./routes/request_handler');
 let Message = require('./models/messages');
+
+let app = express();
+let port = process.env.PORT || 8080;
+
+var server = app.listen(port, function() {
+  console.log('we are now listening on: ' + port);
+});
+let io = require('./io.js').init(server);
+let handler = require('./routes/request_handler');
 
 // const db = require('./config.js');
 // const importdata = require('./fakeData.js');
 
-let port = process.env.PORT || 8080;
-let app = express();
 
 
 app.use(bodyParser.json());
@@ -80,10 +86,7 @@ app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
 app.get('*', handler.wildCard);
 
 
-var server = app.listen(port, function() {
-  console.log('we are now listening on: ' + port);
-});
-let io = require('./io.js').init(server);
+
 
 // SERVER SOCKET STUFF     
 // *************************

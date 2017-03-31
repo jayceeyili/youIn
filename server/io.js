@@ -1,5 +1,5 @@
 var sockets = require('socket.io');
-var io = null;
+var io;
 var Message = require('./models/messages');
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 		io = sockets(server);
 
 		io.on('connection', function(socket) {
-			console.log('connected to sockets');
+			console.log('Connected to sockets.');
 
 			socket.on('chat-join', function(data) {
 				/* assumes object 
@@ -22,9 +22,16 @@ module.exports = {
 				Message.getUserEvents(data.user_id)
 				.then(function(result) {
 					// assumes result is an array of event ids
-					var rooms = data.events
-					socket.join(rooms);
-					socket.join('new-room');
+					var rooms = result.map(function(room) {
+						return 'room:' + room.event_id;
+					});
+					rooms.push('room:new-rooms');
+					rooms.forEach(function(room) {
+						socket.join(room, function() {
+							/* Uncomment next line to debug socket joining rooms. */
+							// console.log(socket.id, ' joined room ', room)
+						});
+					})
 				});
 			});
 

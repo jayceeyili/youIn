@@ -18,10 +18,12 @@ class App extends React.Component {
       facebookToken: '',
       userName: '',
       ownerEvents: [],
-      friendEvents: []
+      friendEvents: [],
+      user: ''
     }
 
     this.getUsers = this.getUsers.bind(this);
+    this.setCurrentUser = this.setCurrentUser.bind(this);
   }
 
   componentDidMount() {
@@ -30,15 +32,19 @@ class App extends React.Component {
     context.getUsers();
   }
   setToken(token) {
-    // console.log(token, 'this token went through to the top');
     this.setState({
       facebookToken: token
     });
-    // console.log(this.state.facebookToken, 'so does this work?');
   }
   setName(name) {
     this.setState({
       userName: name 
+    });
+  }
+
+  setCurrentUser(user) {
+    this.setState({
+      user: user
     });
   }
 
@@ -81,7 +87,8 @@ class App extends React.Component {
           return (<Facebook history={props.history} 
             setToken={this.setToken.bind(this)}
             setName={this.setName.bind(this)} 
-            getEvents={this.getEvents.bind(this)}/>
+            getEvents={this.getEvents.bind(this)}
+            setCurrentUser={ this.setCurrentUser } />
           )
         }} />
         <Route path='/homepage' component={(props) => {
@@ -97,6 +104,7 @@ class App extends React.Component {
               history={ props.history } 
               getEvents={ this.getEvents.bind(this)} 
               allState={ this.state }
+              currentUser={ this.state.user }
             />
           )
         }} />

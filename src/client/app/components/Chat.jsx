@@ -6,6 +6,7 @@ import EventShow from './EventShow.jsx';
 import Chatbox from './Chatbox.jsx';
 import MessageInputBox from './MessageInputBox.jsx';
 import data from './../../../../server/data.js';
+import io from 'socket.io-client';
 
 export default class Chat extends React.Component {
   constructor(props) {
@@ -16,11 +17,9 @@ export default class Chat extends React.Component {
       myEvents: this.props.allState.ownerEvents,
       friendEvents: this.props.allState.friendEvents,
       currentEvent: this.props.allState.ownerEvents[0],
-      currentUser: null,
       messages: [],
-      isGoing: '',
-      buttonAccept: 'ui button',
-      buttonDecline: 'ui button'
+      isGoing: false,
+      socket: ''
     }
 
     this.handleSidebarEventClick = this.handleSidebarEventClick.bind(this);
@@ -31,7 +30,29 @@ export default class Chat extends React.Component {
 
   componentDidMount() {
     this.fetchMessages();
+    this.initSockets();
 	}
+
+  initSockets() {
+    let socket = io('http://localhost:8080/');
+    /*  Joins channels for all relevant events and a 
+        default room:new-rooms channel */
+    socket.emit('chat-join', {
+      user_id: this.props.currentUser
+    })
+    socket.on('connect', function() {
+      console.log('Socket Id: ', socket.id);
+    })
+    socket.on('new-message', function(data) {
+      console.log('Sockets: Received new message: ', data);
+    })
+    socket.on('new-room', function(data) {
+      console.log('Sockets: A new event room was created: ', data);
+    })
+    this.setState({
+      socket: socket
+    });
+  }
 
   renderNewMessage(message) {
     this.setState({
@@ -58,17 +79,12 @@ export default class Chat extends React.Component {
   handleDeclineEvent() {
     this.setState({
       isGoing: false,
-      buttonDecline: 'ui primary button',
-      buttonAccept: 'ui button'
     })
   }
 
   handleAcceptEvent() {
     this.setState({
-      isGoing: true,
-      buttonAccept: 'ui primary button',
-      buttonDecline: 'ui button'
-      // friends: friends.push(currentUser);
+      isGoing: true
     })
   }
 
@@ -84,7 +100,9 @@ export default class Chat extends React.Component {
         <div className="ui visible sidebar">
           <Sidebar myEvents={ this.state.myEvents }
             friendEvents={ this.state.friendEvents }
-            handleSidebarEventClick={ this.handleSidebarEventClick }/>
+            handleSidebarEventClick={ this.handleSidebarEventClick }
+            socket={ this.state.socket } 
+          />
         </div>
         <div className="pushable">
           <EventShow
@@ -98,8 +116,9 @@ export default class Chat extends React.Component {
             getEvents={ this.props.getEvents }
             history={ this.props.history }
             accessToken={ this.props.allState.facebookToken }
-            buttonDecline={ this.state.buttonDecline }
-            buttonAccept={ this.state.buttonAccept }
+            currentEvent={ this.state.currentEvent }
+            currentUser={ this.props.currentUser }
+            socket={ this.state.socket }
           />
         </div>
       </div>

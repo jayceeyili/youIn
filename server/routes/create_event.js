@@ -1,6 +1,5 @@
 'use strict';
 let db = require('../config');
-let io = require('../io').io();
 
 module.exports = function(req, res) {
   // create a random user as sub for
@@ -10,7 +9,6 @@ module.exports = function(req, res) {
   event.owner = req.user.user_id;
   //event.attendees = 10;
   // console.log('inside create_event function', req.body);
-
   console.log('inside create_event', event);
   // query the database for events
   db.one('INSERT into EVENTS (owner, title, description, location, date, time)\
