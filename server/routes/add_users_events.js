@@ -1,11 +1,11 @@
 'use strict';
 
 let db = require('../config');
+let io = require('../io').io();
 
 module.exports = function(req, res) {
   let userIds = req.body.userIds;
   let eventId = req.body.eventId;
-
 
   db.task(t => {
     return t.batch(
@@ -20,12 +20,10 @@ module.exports = function(req, res) {
     
   })
   .then((result) => {
-     /**
-       * IO
-       */
-      // get array 
-      // io.to('new-room').emit('new-event', {} )
-
+    /**
+      * IO
+      */
+    io.to('room:new-rooms').emit('new-room', result);
     res.status(201).send('updated users_events table') 
   });
 };
