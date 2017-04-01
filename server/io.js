@@ -56,15 +56,15 @@ module.exports = {
 					    })
 					    .catch((err) => {
 					      console.error(err, 'an error in db retrieval');
-					      socket.emit('error', 'bad request with write');
+					      socket.emit('errors', 'bad request with write');
 					    });
 				  // });
 			  	} else {
-			  		socket.emit('error', 'no access');
+			  		socket.emit('errors', 'no access');
 			  	}
 			  }).catch((err) => {
 			  	console.error(err, 'error in authentication, user not listed with event');
-			  	socket.emit('error', 'bad request with getUserEvent');
+			  	socket.emit('errors', 'bad request with getUserEvent');
 			  });
 			});
 

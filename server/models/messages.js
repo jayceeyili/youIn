@@ -27,6 +27,13 @@ module.exports = {
      on (users.user_id = friends.user2 and friends.user1 =$1)', [userid]);
   },
 
+  getEventUsers: function (eventRequest) {
+    return db.query('select * from users inner join users_events\
+     on users.user_id = users_events.user_id\
+      where users_events.event_id =${event_id}\
+      and (users_events.current_status=${status}', eventRequest);
+  },
+
   addUserFriend: function (friendRequest) {
     
     /*friend objects received in the form of

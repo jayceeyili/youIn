@@ -95,6 +95,10 @@ export default class Chat extends React.Component {
         this.renderOwnerEvent(data.event)
       }  
     }.bind(this))
+    
+    socket.on('errors', function(data) {
+      console.log('Sockets: An error occured: ', data);
+    })
     this.setState({
       socket: socket
     });
