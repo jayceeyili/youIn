@@ -151,6 +151,9 @@ export default class Chat extends React.Component {
       currentEvent: event,
       currentAttendees: event.attendees
     })
+    if (this.state.currentEvent.unread_messages) {
+      this.state.currentEvent.unread_messages.splice(0);
+    }
   }
 
   render() {
