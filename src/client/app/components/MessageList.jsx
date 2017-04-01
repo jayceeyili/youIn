@@ -2,7 +2,7 @@ import React from 'react';
 import MessageListEntry from './MessageListEntry.jsx';
 
 const MessageList = props => (
-  <div className="ui comments">
+  <div className="" style={{overflowX: 'hidden', overflowY: 'scroll', marginBottom: '20px', height: '200px', width: '100%'}}>
     {
       props.messages.map( ( message, index ) => (
         <MessageListEntry
@@ -15,6 +15,3 @@ const MessageList = props => (
 );
 
 export default MessageList;
-    // props.messageList.map(message => (
-    //   <MessageListEntry messageListEntry={ message } />
-    // ))

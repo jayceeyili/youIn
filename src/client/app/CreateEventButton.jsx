@@ -144,12 +144,12 @@ class CreateEventButton extends React.Component {
   render () {
     return (
       <div>
-        <div>
-          <button id="create_event" className="ui primary button"
+        <div style={{overflow: 'hidden'}}>
+          <button id="create_event" className="ui right floated primary button"
             onClick={this.showModal.bind(this)} >Create Event</button>
         </div>
-
-        <Modal ref="modal"
+        
+        <Modal ref="modal" 
           modalStyle={{width: '80%'}}>
           <div className="container-fluid">
             <form className="ui form"
@@ -164,8 +164,8 @@ class CreateEventButton extends React.Component {
                   <div className="inline fields">
                     <div className="sixteen wide field">
                       <label>Event Name</label>
-                      <input
-                        value={this.state.title}
+                      <input 
+                        value={this.state.title} 
                         type="text"
                         onChange={this.handleChange.bind(this, 'title')} required
                         />

@@ -1,9 +1,10 @@
 import React from 'react';
 
 const Event = (props) => (
-  <li onClick={ () => props.handleSidebarEventClick(props.event) }>
+  <a className={props.currentEvent.event_id === props.event.event_id ? 'item active' : 'item'}
+  	onClick={ () => props.handleSidebarEventClick(props.event) }>
     { props.event.title }
-  </li>
+  </a>
 );
 
 export default Event; 

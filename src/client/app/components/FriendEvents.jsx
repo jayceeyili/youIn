@@ -3,11 +3,12 @@ import Event from './Event.jsx';
 
 const FriendEvents = (props) => (
   <div>
-    <h1>Friend Events</h1>
+      <div className="ui medium header" style={{padding: '5px 20px'}}>Friend Events</div>
       <ul>
         {
           props.friendEvents.map( ( event, index ) => (
             <Event
+              currentEvent={ props.currentEvent }
               key={ index }
               event={ event }
               handleSidebarEventClick={ props.handleSidebarEventClick } />
