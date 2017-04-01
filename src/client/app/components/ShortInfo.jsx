@@ -36,6 +36,8 @@ export default class ShortInfo extends React.Component {
           this.state.showDescription ? <div>{ this.props.event.description }</div> : null
         }
         <AttendingList
+          currentUser={ props.currentUser }
+          event={ props.event }
           currentAttendees={ this.props.currentAttendees }
           friends={ this.props.friends }
           isGoing={ this.props.isGoing }
