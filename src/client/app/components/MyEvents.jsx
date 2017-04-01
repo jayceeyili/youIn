@@ -3,17 +3,18 @@ import Event from './Event.jsx';
 
 const MyEvents = (props) => (
   <div>
-    <h1>My Events</h1>
-      <ul>
-        {
-          props.myEvents.map( ( event, index ) => (
-            <Event
-              key={ index }
-              event={ event }
-              handleSidebarEventClick={ props.handleSidebarEventClick } />
-          ))
-        }
-      </ul>
+    <div className="ui medium header" style={{padding: '5px 20px'}}>My Events</div>
+      <div className="ui link list">
+      {
+        props.myEvents.map( ( event, index ) => (
+          <Event
+            currentEvent={ props.currentEvent }
+            key={ index }
+            event={ event }
+            handleSidebarEventClick={ props.handleSidebarEventClick } />
+        ))
+      }
+      </div>
   </div>
 );
 

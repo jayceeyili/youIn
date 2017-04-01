@@ -144,8 +144,8 @@ class CreateEventButton extends React.Component {
   render () {
     return (
       <div>
-        <div>
-          <button id="create_event" className="ui primary button"
+        <div style={{overflow: 'hidden'}}>
+          <button id="create_event" className="ui right floated primary button"
             onClick={this.showModal.bind(this)} >Create Event</button>
         </div>
         

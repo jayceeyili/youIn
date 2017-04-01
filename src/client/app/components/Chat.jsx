@@ -18,7 +18,7 @@ export default class Chat extends React.Component {
       friendEvents: this.props.allState.friendEvents,
       currentEvent: this.props.allState.ownerEvents[0],
       messages: [],
-      isGoing: false,
+      isGoing: '',
       buttonAccept: 'ui button',
       buttonDecline: 'ui button',
       socket: ''
@@ -100,6 +100,8 @@ export default class Chat extends React.Component {
 
   handleDeclineEvent() {
     this.setState({
+      buttonDecline: 'ui primary button',
+      buttonAccept: 'ui button',
       isGoing: false,
     })
 
@@ -108,6 +110,8 @@ export default class Chat extends React.Component {
 
   handleAcceptEvent() {
     this.setState({
+      buttonDecline: 'ui button',      
+      buttonAccept: 'ui button primary',
       isGoing: true
     })
 
@@ -128,7 +132,8 @@ export default class Chat extends React.Component {
           <Sidebar myEvents={ this.state.myEvents }
             friendEvents={ this.state.friendEvents }
             handleSidebarEventClick={ this.handleSidebarEventClick }
-            socket={ this.state.socket }
+            currentEvent={ this.state.currentEvent }
+            socket={ this.state.socket } 
           />
         </div>
         <div className="pushable">

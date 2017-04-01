@@ -1,6 +1,27 @@
+.youin__message-box.youin__message-box {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 25px;
+}
+
+.ui.link.list .active.item, 
+.ui.link.list .active.item a:not(.ui) {
+  background-color: #ccc;
+}
+
+.ui.link.list .item, .ui.link.list .item a:not(.ui), 
+.ui.link.list a.item {
+  padding: 5px 20px;
+}
+
+.logo.logo {
+  padding: 25px;
+}
+
 .event-show {
-  padding-top: 25px;
-  padding-left: 25px;
+  padding: 10px 25px;
 }
 
 .message-input-box {
