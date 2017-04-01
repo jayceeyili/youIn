@@ -1,15 +1,12 @@
 import React from 'react';
 
-const FriendPic = props => {
-  // functions
+const Avatar = props => (
+	<div className="item">
+    <img className="ui avatar image" src="/images/avatar/small/daniel.jpg" />
+    <div className="content">
+      <a className="header">{ `${props.user.firstname} ${props.user.lastname}` }</a>
+    </div>
+  </div>
+);
 
-  return (
-    <span>
-      { props.pic } | 
-    </span>
-  );
-};
-
-export default FriendPic;
-
-// // <img className="friendPic" src={ props.pic }></img>
+export default Avatar;

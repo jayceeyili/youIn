@@ -3,7 +3,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  padding: 25px;
+  padding: 15px;
 }
 
 .ui.link.list .active.item, 
@@ -22,15 +22,6 @@
 
 .event-show {
   padding: 10px 25px;
-}
-
-.message-input-box {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  padding-left: 25px;
 }
 
 .pushable {

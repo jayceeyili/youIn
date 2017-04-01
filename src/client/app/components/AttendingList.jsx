@@ -2,17 +2,19 @@ import React from 'react';
 import Avatar from './Avatar.jsx';
 
 const AttendingList = props => {
-  // functions
   return (
-    <div className="ui segment">
-      {
-        props.friends.map( ( friend, index ) => (
-          <Avatar
-            key={ index }
-            pic={ friend.photoUrl }
-          />
-        ))
-      }
+    <div>
+      <strong>Attending: </strong>
+      <div className="ui relaxed mini horizontal list">
+        {
+          props.friends.map( ( friend, index ) => (
+            <Avatar
+              key={ index }
+              user={ friend }
+            />
+          ))
+        }
+      </div>
       {
         props.isGoing &&
         <div> 
