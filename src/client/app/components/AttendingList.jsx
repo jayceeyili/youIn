@@ -7,7 +7,7 @@ const AttendingList = props => {
       <strong>Attending: </strong>
       <div className="ui relaxed mini horizontal list">
         {
-          props.friends.map( ( friend, index ) => (
+          props.currentAttendees.map( ( friend, index ) => (
             <Avatar
               key={ index }
               user={ friend }
@@ -17,7 +17,7 @@ const AttendingList = props => {
       </div>
       {
         props.isGoing &&
-        <div> 
+        <div>
           <button className={ props.buttonDecline } onClick={ props.handleDeclineEvent }>
             Decline
           </button>

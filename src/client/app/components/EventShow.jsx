@@ -17,8 +17,10 @@ const EventShow = (props) => (
     </div>
 
     <ShortInfo
-      accessToken={ props.accessToken }
+      currentUser={ props.currentUser }
       event={ props.event }
+      accessToken={ props.accessToken }
+      currentAttendees={ props.currentAttendees }
       friends={ props.friends }
       isGoing={ props.isGoing }
       handleDeclineEvent={ props.handleDeclineEvent }
