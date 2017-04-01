@@ -50,6 +50,15 @@ export default class Chat extends React.Component {
     })
     socket.on('new-message', function(data) {
       console.log('Sockets: Received new message: ', data);
+      // console.log((this.props.currentUser.toString() === data.user_id))
+      if (data.user_id !== (this.props.currentUser.toString())) {
+      var messageArray = this.state.messages;
+        messageArray.push(data);
+        this.setState({
+          messages: messageArray
+        });
+      }
+
       var ownerArray = this.state.ownerEvents;
       ownerArray.forEach(event => {
         if (data.event_id === event.event_id) {
