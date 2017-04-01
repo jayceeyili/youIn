@@ -24,6 +24,7 @@ class App extends React.Component {
     }
 
     this.getUsers = this.getUsers.bind(this);
+    this.getFriends = this.getFriends.bind(this);
     this.setCurrentUser = this.setCurrentUser.bind(this);
   }
 
@@ -56,7 +57,7 @@ class App extends React.Component {
       method: 'GET',
       contentType: 'application/json',
       success: function(data) {
-        console.log('result of get on /users', data);
+        // console.log('result of get on /users', data);
         context.setState({users: data});
       },
       error: function(err) {
@@ -65,12 +66,14 @@ class App extends React.Component {
     })
   }
 
-  getFriends() {
+  getFriends(user_id) {
+    let context = this;
     $.ajax({
       url: '/users/friends',
       method: 'POST',
-      dataTape: 'json',
-      data: JSON.stringify(this.state.user),
+      // dataTape: 'json',
+      // data: JSON.stringify( { user_id: this.state.user } ),
+      data: { user_id: user_id },
       success: function(data) {
         console.log('result of POST on /users/friends', data);
         context.setState({friends: data});
@@ -105,6 +108,7 @@ class App extends React.Component {
             setToken={this.setToken.bind(this)}
             setName={this.setName.bind(this)}
             getEvents={this.getEvents.bind(this)}
+            getFriends={ this.getFriends }
             setCurrentUser={ this.setCurrentUser } />
           )
         }} />

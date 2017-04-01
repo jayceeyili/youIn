@@ -48,6 +48,7 @@ class Facebook extends React.Component {
       })
       this.props.setToken(response.authResponse.accessToken);
       this.props.setCurrentUser(response.authResponse.userID);
+      this.props.getFriends(response.authResponse.userID);
       this.props.getEvents(this.props.history, function(result) {
         console.log('results of fetching events', result);
         this.setState({

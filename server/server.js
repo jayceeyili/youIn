@@ -43,6 +43,7 @@ app.post('/users/friends', function(req, res) {
   /*req.body {
     user_id:
   }*/
+  console.log('this is the user_id from react', req.body);
   Message.getUserFriends(req.body.user_id)
   .then(function(result) {
     res.status(200).send(result);
