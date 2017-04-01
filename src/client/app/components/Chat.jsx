@@ -50,21 +50,29 @@ export default class Chat extends React.Component {
       console.log('Sockets: Received new message: ', data);
       this.state.myEvents.forEach(event => {
         if (data.event_id === event.event_id) {
-          if (!event[unread_messages]) {
-            event[unread_messages] = [];
+          if (!event.unread_messages) {
+            event.unread_messages = [];
           } 
-          event[unread_messages].push(data);
+          event.unread_messages.push(data);
+        } else {
+          if (!event.unread_messages) {
+            event.unread_messages = [];
+          }
         }
       });
       this.state.friendEvents.forEach(event => {
         if (data.event_id === event.event_id) {
-          if (!event[unread_messages]) {
-            event[unread_messages] = [];
+          if (!event.unread_messages) {
+            event.unread_messages = [];
           } 
-          event[unread_messages].push(data);
+          event.unread_messages.push(data);
+        } else {
+          if (!event.unread_messages) {
+            event.unread_messages = [];
+          }
         }
       });
-    })
+    }.bind(this))
     socket.on('new-room', function(data) {
       console.log('Sockets: A new event room was created: ', data);
       data.users.map(user => {
