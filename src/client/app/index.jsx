@@ -136,7 +136,7 @@ class App extends React.Component {
               addNewTolist={ this.addNewTolist }
               ownerEvents={this.state.ownerEvents}
               friendEvents={this.state.friendEvents}
-              friends={this.state.friends}
+              friends={this.state.users}
               accessToken={this.state.facebookToken}
               userName={this.state.userName}
 
