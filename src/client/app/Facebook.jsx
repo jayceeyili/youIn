@@ -79,21 +79,28 @@ class Facebook extends React.Component {
   }
   render() {
     return (
-       <div className='container'>
-         <div className='page-header'>
-         </div>
-         <div className='col-md-12 login'>
-           <h1> Start the Party </h1>
-           <h4> With The Click Of A Button </h4>
-           <div className='row center'>
-           <button className="loginBtn loginBtn--facebook" data-max-rows="1" data-size="xlarge"
-           data-show-faces="false" data-auto-logout-link="false" onClick={this.handleClick.bind(this)}>
-           Login with Facebook</button>
-           </div>
-         </div>
+      <div className="ui middle aligned center aligned grid" style={{height: '100%'}}>
+        <div className="column" style={{width: '450px'}}>
+          <h2 className="ui teal image header">
+            <div className="content">
+              <h1>You In?</h1>
+            </div>
+          </h2>
+          <form className="ui large form">
+            <div className="ui">
+              <div className="ui fluid">
+                <a className="fb-login-button" data-max-rows="1" data-size="large"
+                data-show-faces="false" data-auto-logout-link="false" 
+                onClick={this.handleClick.bind(this)}>Login</a>
+              </div>
+            </div>
 
-       </div>
-      )
+            <div className="ui error message"></div>
+
+          </form>
+        </div>
+      </div>
+    )
   }
 }
 

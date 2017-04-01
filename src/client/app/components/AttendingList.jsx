@@ -8,7 +8,8 @@ const AttendingList = props => {
     <div>
       <strong>Attending: </strong>
       <div className="ui relaxed mini horizontal list">
-        {
+        { 
+          props.currentAttendees &&
           props.currentAttendees.map( ( friend, index ) => (
             <Avatar
               key={ index }
