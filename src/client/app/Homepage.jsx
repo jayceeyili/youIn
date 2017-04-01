@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import OwnerEventList from './OwnerEventList.jsx';
 import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
@@ -78,6 +78,5 @@ class Homepage extends React.Component {
     )
   }
 }
-
 
 export default Homepage;

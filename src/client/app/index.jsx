@@ -122,6 +122,12 @@ class App extends React.Component {
         <Route path='/chat' component={(props) => {
           return (
             <Chat
+              ownerEvents={this.state.ownerEvents}
+              friendEvents={this.state.friendEvents} 
+              friends={this.state.friends}
+              accessToken={this.state.facebookToken} 
+              userName={this.state.userName}
+
               history={ props.history }
               getEvents={ this.getEvents.bind(this)}
               allState={ this.state }

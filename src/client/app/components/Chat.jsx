@@ -13,11 +13,10 @@ export default class Chat extends React.Component {
     super(props);
 
     this.state = {
-      friends: this.props.allState.friends,
-      myEvents: this.props.allState.ownerEvents,
-      friendEvents: this.props.allState.friendEvents,
-      currentEvent: this.props.allState.ownerEvents[0],
-      currentAttendees: this.props.allState.ownerEvents[0].attendees,
+      ownerEvents: [],
+      friendEvents: [],
+      currentEvent: props.ownerEvents[0],
+      currentAttendees: '',
       messages: [],
       isGoing: '',
       buttonAccept: 'ui button',
@@ -32,12 +31,12 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchMessages();
     this.initSockets();
+    this.fetchMessages();
 	}
 
   initSockets() {
-    let socket = io('http://localhost:8080/');
+    let socket = io();
     /*  Joins channels for all relevant events and a
         default room:new-rooms channel */
     socket.emit('chat-join', {
@@ -120,7 +119,6 @@ export default class Chat extends React.Component {
   }
 
   handleSidebarEventClick(event) {
-    console.log('this is the current', event);
     this.setState({
       currentEvent: event,
       currentAttendees: event.attendees
@@ -131,8 +129,8 @@ export default class Chat extends React.Component {
     return (
       <div>
         <div className="ui visible sidebar">
-          <Sidebar myEvents={ this.state.myEvents }
-            friendEvents={ this.state.friendEvents }
+          <Sidebar myEvents={ this.props.ownerEvents }
+            friendEvents={ this.props.friendEvents }
             handleSidebarEventClick={ this.handleSidebarEventClick }
             currentEvent={ this.state.currentEvent }
             socket={ this.state.socket }
@@ -140,7 +138,7 @@ export default class Chat extends React.Component {
         </div>
         <div className="pushable">
           <EventShow
-            friends={ this.state.friends }
+            friends={ this.props.friends }
             currentAttendees={ this.state.currentAttendees }
             event={ this.state.currentEvent }
             isGoing={ this.state.isGoing }

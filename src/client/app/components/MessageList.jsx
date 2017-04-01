@@ -12,12 +12,10 @@ export default class MessageList extends React.Component {
   }
 
   scrollToBottom() {
-    // const { messageList } = this.refs;
     const messageList = this.messageList;
     const scrollHeight = messageList.scrollHeight;
     const height = messageList.clientHeight;
     const maxScrollTop = scrollHeight - height;
-    console.log(maxScrollTop)    
     ReactDOM.findDOMNode(messageList).scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
   }
 
