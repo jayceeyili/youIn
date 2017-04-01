@@ -185,6 +185,7 @@ export default class Chat extends React.Component {
         </div>
         <div className="pushable">
           <EventShow
+            addNewTolist={ this.props.addNewTolist }
             friends={ this.props.friends }
             currentAttendees={ this.state.currentAttendees }
             event={ this.state.currentEvent }

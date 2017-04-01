@@ -8,6 +8,7 @@ import CreateEventButton from '../CreateEventButton.jsx';
 const EventShow = (props) => (
   <div className='event-show'>
     <CreateEventButton
+      addNewTolist= { props.addNewTolist }
       friends={ props.friends }
       getEvents={ props.getEvents }
       history={ props.history }
