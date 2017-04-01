@@ -44,9 +44,12 @@ export default class DeleteButton extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.deleteEvent} id="owner-delete-button">Delete this Event</button>
-      </div>
+      <button id="owner-delete-button" 
+        className="ui labeled icon button right floated"
+        onClick={ this.deleteEvent }>
+        <i className="trash icon"></i>
+        Delete this Event
+      </button>
     );
   }
 }
