@@ -17,6 +17,7 @@ export default class Chat extends React.Component {
       myEvents: this.props.allState.ownerEvents,
       friendEvents: this.props.allState.friendEvents,
       currentEvent: this.props.allState.ownerEvents[0],
+      currentAttendees: this.props.allState.ownerEvents[0].attendees,
       messages: [],
       isGoing: '',
       buttonAccept: 'ui button',
@@ -110,7 +111,7 @@ export default class Chat extends React.Component {
 
   handleAcceptEvent() {
     this.setState({
-      buttonDecline: 'ui button',      
+      buttonDecline: 'ui button',
       buttonAccept: 'ui button primary',
       isGoing: true
     })
@@ -121,7 +122,8 @@ export default class Chat extends React.Component {
   handleSidebarEventClick(event) {
     console.log('this is the current', event);
     this.setState({
-      currentEvent: event
+      currentEvent: event,
+      currentAttendees: event.attendees
     })
   }
 
@@ -133,12 +135,13 @@ export default class Chat extends React.Component {
             friendEvents={ this.state.friendEvents }
             handleSidebarEventClick={ this.handleSidebarEventClick }
             currentEvent={ this.state.currentEvent }
-            socket={ this.state.socket } 
+            socket={ this.state.socket }
           />
         </div>
         <div className="pushable">
           <EventShow
             friends={ this.state.friends }
+            currentAttendees={ this.state.currentAttendees }
             event={ this.state.currentEvent }
             isGoing={ this.state.isGoing }
             messages={ this.state.messages }
@@ -149,7 +152,7 @@ export default class Chat extends React.Component {
             history={ this.props.history }
             accessToken={ this.props.allState.facebookToken }
             buttonDecline={ this.state.buttonDecline }
-            buttonAccept={ this.state.buttonAccept } 
+            buttonAccept={ this.state.buttonAccept }
             currentEvent={ this.state.currentEvent }
             currentUser={ this.props.currentUser }
             socket={ this.state.socket }
