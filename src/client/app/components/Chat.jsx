@@ -126,22 +126,26 @@ export default class Chat extends React.Component {
   }
 
   renderOwnerEvent(event) {
-    var newEvents = this.state.ownerEvents.push(event);
+    this.state.ownerEvents.push(event);
+    var newEvents = this.state.ownerEvents;
     this.setState({
       ownerEvents: newEvents
     })
   }
 
   renderFriendEvent(event) {
-    var newEvents = this.state.friendEvents.push(event);
+    this.state.friendEvents.push(event);
+    var newEvents = this.state.ownerEvents;
     this.setState({
       friendEvents: newEvents
     })
   }
 
   renderNewMessage(message) {
+    this.state.messages.push(message);
+    var newMessage = this.state.messages;
     this.setState({
-      messages: this.state.messages.concat(message)
+      messages: newMessage
     })
   }
 
