@@ -223,12 +223,13 @@ class CreateEventButton extends React.Component {
 
               {
                 this.state.invitNew &&
-                <InviteNewFriend />
+                <InviteNewFriend addNewTolist={ this.props.addNewTolist }/>
               }
 
               <div className="col-md-4">
                 <h4 className='create'>Invite from Friends List</h4>
                 {
+                  this.props.friends &&
                   this.props.friends.map( (friend, i) => (
                     <FriendsListItem
                       key={i}

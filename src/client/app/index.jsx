@@ -26,6 +26,7 @@ class App extends React.Component {
     this.getUsers = this.getUsers.bind(this);
     this.getFriends = this.getFriends.bind(this);
     this.setCurrentUser = this.setCurrentUser.bind(this);
+    this.addNewTolist = this.addNewTolist.bind(this);
   }
 
   componentDidMount() {
@@ -84,6 +85,15 @@ class App extends React.Component {
     })
   }
 
+  addNewTolist(friend) {
+    console.log(friend);
+    // let friends = this.state.friends;
+    friends.push(friend);
+    this.setState({
+      friends: this.state.friends.concat(friend)
+    })
+  }
+
   getEvents(history, callback) {
     let context = this;
     $.ajax({
@@ -114,6 +124,7 @@ class App extends React.Component {
         }} />
         <Route path='/homepage' component={(props) => {
           return ( <Homepage ownerEvents={this.state.ownerEvents}
+            addNewTolist={ this.addNewTolist }
             friendEvents={this.state.friendEvents} friends={this.state.friends}
             accessToken={this.state.facebookToken} userName={this.state.userName}
             history={props.history}
@@ -122,10 +133,11 @@ class App extends React.Component {
         <Route path='/chat' component={(props) => {
           return (
             <Chat
+              addNewTolist={ this.addNewTolist }
               ownerEvents={this.state.ownerEvents}
-              friendEvents={this.state.friendEvents} 
+              friendEvents={this.state.friendEvents}
               friends={this.state.friends}
-              accessToken={this.state.facebookToken} 
+              accessToken={this.state.facebookToken}
               userName={this.state.userName}
 
               history={ props.history }
