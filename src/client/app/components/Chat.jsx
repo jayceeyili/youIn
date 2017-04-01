@@ -50,7 +50,7 @@ export default class Chat extends React.Component {
     })
     socket.on('new-message', function(data) {
       console.log('Sockets: Received new message: ', data);
-      // console.log((this.props.currentUser.toString() === data.user_id))
+      
       if (data.user_id !== (this.props.currentUser.toString())) {
       var messageArray = this.state.messages;
         messageArray.push(data);
@@ -224,7 +224,6 @@ export default class Chat extends React.Component {
         </div>
         <div className="pushable">
           <EventShow
-            addNewTolist={ this.props.addNewTolist }
             friends={ this.props.friends }
             currentAttendees={ this.state.currentAttendees }
             event={ this.state.currentEvent }

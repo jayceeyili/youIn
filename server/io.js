@@ -48,16 +48,24 @@ module.exports = {
 			  	if (result.length > 0) {
 				  // socket.join(`${room}`, function() {
 				    // new message object retrieved from db.
-				    Message.write(data)
-				    	.then(function (result) {
-				    // sends a response of new-message event to all people in the event room.
-					      io.to(`room:${room}`)
-					      .emit('new-message', result);
-					    })
-					    .catch((err) => {
-					      console.error(err, 'an error in db retrieval');
-					      socket.emit('errors', 'bad request with write');
-					    });
+				    Message.getUsername(obj.user_id)
+				    .then((userObj) => {
+					    Message.write(data)
+					    	.then(function (result) {
+					    // sends a response of new-message event to all people in the event room.
+					    		result['user_name'] = userObj.firstname + ' ' + userObj.lastname;
+						      io.to(`room:${room}`)
+						      .emit('new-message', result);
+						    })
+						    .catch((err) => {
+						      console.error(err, 'an error in db retrieval write');
+						      socket.emit('errors', 'bad request with write');
+						    });				    	
+				    })
+				    .catch((err) => {
+				      console.error(err, 'an error in db retrieval username');
+				      socket.emit('errors', 'bad request with username');
+				    });
 				  // });
 			  	} else {
 			  		socket.emit('errors', 'no access');

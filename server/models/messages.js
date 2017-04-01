@@ -3,7 +3,8 @@ let db = require('../config');
 module.exports = {
 
   getAll: function () {
-    return db.query('select * from messages');
+    return db.query('select messages.*, users.firstname, users.lastname\
+     from users inner join messages on users.user_id=messages.user_id');
   },
   getUserEvents: function (userid) {
     return db.query('select event_id from users_events\
@@ -44,6 +45,10 @@ module.exports = {
     return db.one('insert into friends (user1, user2)\
       values (${user_id}, ${friend_id}) returning *', friendRequest);
 
+  },
+
+  getUsername: function (userid) {
+    return db.one('select firstname, lastname from users where user_id=$1', [userid]);
   },
 
   write: function (message) {
