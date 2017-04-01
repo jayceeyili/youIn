@@ -50,6 +50,15 @@ export default class Chat extends React.Component {
     })
     socket.on('new-message', function(data) {
       console.log('Sockets: Received new message: ', data);
+      
+      if (data.user_id !== (this.props.currentUser.toString())) {
+      var messageArray = this.state.messages;
+        messageArray.push(data);
+        this.setState({
+          messages: messageArray
+        });
+      }
+
       var ownerArray = this.state.ownerEvents;
       ownerArray.forEach(event => {
         if (data.event_id === event.event_id) {
@@ -95,6 +104,10 @@ export default class Chat extends React.Component {
         this.renderOwnerEvent(data.event)
       }  
     }.bind(this))
+    
+    socket.on('errors', function(data) {
+      console.log('Sockets: An error occured: ', data);
+    })
     this.setState({
       socket: socket
     });
@@ -211,7 +224,6 @@ export default class Chat extends React.Component {
         </div>
         <div className="pushable">
           <EventShow
-            addNewTolist={ this.props.addNewTolist }
             friends={ this.props.friends }
             currentAttendees={ this.state.currentAttendees }
             event={ this.state.currentEvent }
