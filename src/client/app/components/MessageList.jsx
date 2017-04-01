@@ -1,17 +1,39 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import MessageListEntry from './MessageListEntry.jsx';
 
-const MessageList = props => (
-  <div className="" style={{overflowX: 'hidden', overflowY: 'scroll', marginBottom: '20px', height: '200px', width: '100%'}}>
-    {
-      props.messages.map( ( message, index ) => (
-        <MessageListEntry
-          key={ index }
-          message={ message }
-        />
-      ))
-    }
-  </div>
-);
+export default class MessageList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default MessageList;
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    // const { messageList } = this.refs;
+    const messageList = this.messageList;
+    const scrollHeight = messageList.scrollHeight;
+    const height = messageList.clientHeight;
+    const maxScrollTop = scrollHeight - height;
+    console.log(maxScrollTop)    
+    ReactDOM.findDOMNode(messageList).scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  }
+
+  render() {
+    return (
+      <div className="ui items" style={{position: 'fixed', bottom: '40px', overflowX: 'hidden', overflowY: 'scroll', height: '300px', width: '100%'}}
+        ref={input => { this.messageList = input}}>
+        {
+          this.props.messages.map( ( message, index ) => (
+            <MessageListEntry
+              key={ index }
+              message={ message }
+            />
+          ))
+        }
+      </div>
+    );
+  }
+}

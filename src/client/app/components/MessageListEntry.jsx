@@ -2,19 +2,17 @@ import React from 'react';
 import Moment from 'react-moment';
 
 const MessageListEntry = (props) => (
-  <div className="content">
-    <div className="author">
-      { props.message.user_id }
-    </div>
-    <div className="text">
-      { props.message.text }
-    </div>
-    <div className="date">
-      { <Moment fromNow ago>{ props.message.created }</Moment> } ago
+  <div className="item">
+    <div className="content">
+      <a className="header">{ props.message.user_id }</a>
+      <div className="meta">
+        <span className="price">{ <Moment fromNow ago>{ props.message.created }</Moment> } ago</span>
+      </div>
+      <div className="description">
+        { props.message.text }
+      </div>
     </div>
   </div>
 );
 
 export default MessageListEntry;
-// on load grab messages from endpoint
-// get request to /messages

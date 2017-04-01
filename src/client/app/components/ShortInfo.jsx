@@ -21,15 +21,17 @@ export default class ShortInfo extends React.Component {
 
   render() {
     return (
-      <div className="ui vertical segment" onClick={ this.handleEventInfoClick }>
+      <div className="ui vertical segment" style={{paddingTop: '0'}}
+        onClick={ this.handleEventInfoClick }>
         <DeleteButton
           event={ this.props.event }
           accessToken={ this.props.accessToken }
         />
-        <div className="ui medium header">{ this.props.event.title }</div>
-
-        <h2>{ this.props.event.location }</h2>
-        <h2>{ this.props.event.time }</h2>
+        <h1 className="ui header" style={{marginTop: '0'}}>
+          { this.props.event.title }
+          <div className="sub header">Where: <strong>{ this.props.event.location }</strong> When: <strong>{ this.props.event.time }</strong> | 
+            <i className="info icon"></i> { this.props.event.description }</div>
+        </h1>
         { 
           this.state.showDescription ? <div>{ this.props.event.description }</div> : null 
         }

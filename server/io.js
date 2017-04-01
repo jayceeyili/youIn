@@ -51,7 +51,7 @@ module.exports = {
 				    Message.write(data)
 				    	.then(function (result) {
 				    // sends a response of new-message event to all people in the event room.
-					      io.to(`${room}`, 'a new message')
+					      io.to(`room:${room}`)
 					      .emit('new-message', result);
 					    })
 					    .catch((err) => {
